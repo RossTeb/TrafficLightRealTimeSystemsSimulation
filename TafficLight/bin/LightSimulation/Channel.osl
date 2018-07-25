@@ -1,0 +1,122 @@
+use all psimjava
+
+description
+ Process synchronous communication in OOSimL
+ Sender process directly communicates with a receiver process
+ to transfer a message through a channel.
+ 
+ A channel is implemented as a waitq object for the rendezvous.
+ A channel is defined in the model for every each pair of processes.
+ (C) J. Garrido, 2013. Updated Nov. 2014
+  File: Channel.osl
+  This class defines a communication channel
+  It is used by pairs of processes that need to communicate synchronously
+*/
+class Channel is
+private
+variables
+   define chname of type string       // channel name
+   define comm_int of type double     // comm interval 
+   define wait_int of type double     // wait interval
+object references
+   define synchan of class Waitq      // communication link
+   define send_proc of class psimjava.Process // process that sends message
+   define rec_proc of class psimjava.Process  // process that receives message
+   define mess of class Message       // message
+   define gen_comm of class Normal    // generate random time interval
+public
+ function initializer parameters lname of type string,
+          psend of class psimjava.Process, prec of class psimjava.Process,
+          mean_comm of type double, std_comm of type double
+ is
+ begin
+     set chname = lname
+     set send_proc = psend
+     set rec_proc = prec
+     // the actual communication link
+     create synchan of class Waitq using lname concat chname, 1 
+     create gen_comm of class Normal using 
+         "Comm interval " concat chname, mean_comm, std_comm
+ endfun initializer
+ //  
+ function send parameters msg of class Message is
+ variables
+     define simclock of type double
+     define startw of type double
+ begin
+     // generate random value comm_int from gen_comm
+     set mess = msg
+     if mess == null then
+        display "message to send is null"
+     endif
+     
+     assign simulation clock to simclock
+     set startw = simclock
+     
+     wait for master in synchan  // communicate
+     
+     assign simulation clock to simclock
+     set wait_int = simclock - startw   
+
+     // display chname, " end send"
+ endfun send
+ //
+ function receive return class Message is
+ variables
+     define startw of type double
+     define comm_int of type double
+     define simclock of type double
+ begin
+     // display chname, " ready to receive message from ", send_proc.get_name()
+     assign simulation clock to simclock
+     set startw = simclock // start time     
+     cooperate with slave send_proc of class psimjava.Process in synchan
+     assign simulation clock to simclock
+     set wait_int = simclock - startw
+     if mess == null then
+        display "Chan ", chname, " mess is null"
+     endif
+     generate random value comm_int from gen_comm
+     hold rec_proc for comm_int
+     // display "end receive"
+     reactivate send_proc now 
+     return mess
+ endfun receive
+ //
+ function get_chname return type string is
+ begin
+     return chname
+ endfun get_chname
+ //
+ // get the communication interval
+ function get_comm_int return type double is
+ begin  
+    return comm_int
+ endfun get_comm_int
+ //
+ function get_wait return type double is
+ begin
+    return wait_int
+ endfun get_wait
+ //
+// sender process ready?
+ function input_ready return type boolean is
+ begin
+    if synchan.length() > 0 then
+        return true
+    else
+        return false
+    endif
+ endfun input_ready
+ //
+ // receiver process ready?
+ function output_ready return type boolean is
+ begin
+    if synchan.lengthm() > 0 then
+        return true
+    else
+        return false
+    endif
+ endfun output_ready
+ //
+endclass Channel

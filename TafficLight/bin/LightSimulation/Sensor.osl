@@ -1,0 +1,140 @@
+
+use all psimjava
+
+
+class Sensor as process is
+private
+
+variables
+   define arr_mean of type double //avg arrival time
+   define activity_mean of type double	// avg length of time a car waits at the sensor
+   define status of type integer	//current state of sensor
+   define s_type of type integer 	//Street type eg:Main street or side street
+   define shortest_wait of type double	//shortest time car will sit at sensor
+   define longest_wait of type double	//longest time car will sit at sensor
+   define Sensor_Name of type string	//Name of sensor
+object references   
+   define arr_period of class Erand   // Random car interarrival period
+   define activity_period of class Urand	//Period of time cars will sit at sensor
+
+   define Rchannel of class Channel	//Reset channel from controller
+   define arriveChannel of class Channel	//channel to notify monitor of arrival
+
+   define recievemsg of class Message
+   define sendmsg of class Message
+public
+constants
+	//Defines states
+   define NO_CAR = 1 of type integer
+   define CAR_DETECT = 2 of type integer
+   define WAITING_CAR=3 of type integer
+   //Streets
+   define MAIN_STREET = 1 of type integer
+   define SIDE_STREET = 2 of type integer
+	//Method to get status of sensor
+  function get_status return type integer is
+  begin
+      return status
+  endfun get_status
+
+  function initializer parameters sname of type string, arrive_mean of type double, duration_mean of type double, street of type integer
+  is
+  begin
+      call super using sname	//Set name of sensor
+      set Sensor_Name = sname
+      
+      set arr_mean = arrive_mean
+      set activity_mean = duration_mean
+		//Sets wait period from avg wait time
+	  set shortest_wait = activity_mean*0.75
+	  set longest_wait = activity_mean*2.0
+	  
+      create arr_period of class Erand using arr_mean
+	  create activity_period of class Urand using shortest_wait,longest_wait
+
+      set status = NO_CAR
+      //initialize which street the sensor should monitor
+      set s_type = street
+      display "Sensor initiated: ", Sensor_Name
+      
+  endfun initializer
+  //
+  function Main_body is
+  variables
+       define arrival_time of type double	//time until car arrival
+       define wait_duration of type double	//period car triggers sensor
+       define simclock of type double
+  begin
+       assign simulation clock to simclock
+       create sendmsg of class Message using "1"
+	//Sets channel based off street
+       if s_type == MAIN_STREET then
+       	  tracewrite Sensor_Name +" suspends until red light"
+          set Rchannel = Car.MainChan
+       	  set arriveChannel = Car.Main_detect
+       	  //Suspends until reactivated by controller
+       	  call wait_traffic
+       else
+       	  set Rchannel = Car.SideChan
+       	  set arriveChannel = Car.Side_detect
+       endif
+       
+       while simclock < Car.stop_time do
+          tracewrite Sensor_Name + " waits for car to arrive"
+          //Generates arrival time of car
+          generate random value arrival_time from arr_period
+          //Generates car stop time
+          generate random value wait_duration from activity_period
+          // wait for car to arrive
+          hold self for arrival_time
+          assign simulation clock to simclock
+          set status = WAITING_CAR
+          //If car triggered sensor for the required length of time signal monitor
+          if simclock < Car.stop_time && wait_duration >= Car.required_sit then
+             call car_arrival
+          endif
+          assign simulation clock to simclock
+       endwhile
+       tracewrite "Terminate Sensor process"
+       terminate self
+  endfun Main_body
+  //
+  function car_arrival is
+  begin
+      tracewrite Sensor_Name + " detected waiting car"
+
+      //Check if monitor is active
+      reschedule self now
+      if Car.Mon_Obj.idle() and
+          (Car.Mon_Obj.mon_stat() == Car.Mon_Obj.NONE_WAIT or
+              Car.Mon_Obj.mon_stat() == Car.Mon_Obj.CAR_IN)
+      then
+          reactivate Car.Mon_Obj now   //reactivates  monitor
+          reschedule self now
+      endif
+
+
+      call arriveChannel.send using sendmsg    //Signal arrival to monitor
+      set status = CAR_DETECT
+      tracewrite Sensor_Name+" sent signal to Monitor"
+      //method to suspend until controller comm
+	  call wait_traffic	
+  endfun car_arrival
+  function wait_traffic is
+  begin
+  	set status = CAR_DETECT
+  	while status == CAR_DETECT do
+  		//if Reset channel is rdy for comm attempt comm otherwise suspend
+	  	if Rchannel.input_ready() then
+	  		set recievemsg = Rchannel.receive()	//receive reset signal from controller
+    		tracewrite Sensor_Name + " received reset signal from Controller "
+    		set status = NO_CAR	//Reset state and restart
+	  	else
+	  		tracewrite Sensor_Name + " suspends"
+	  		suspend self	//Monitor suspends
+	  		tracewrite Sensor_Name +" reactivated by Controller"
+	  	endif
+	  	reschedule self now	//allow other threads to run
+	endwhile
+  endfun wait_traffic
+endclass Sensor

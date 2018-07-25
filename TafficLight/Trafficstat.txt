@@ -1,0 +1,74 @@
+OOSimL model: Simple Traffic Light System
+Simulation date: date: 12/8/2015 time: 23:20
+Controller timeout: 5.0
+--------------------STATISTICS REPORT----------------------------
+-----------------------------------------------------------------
+Random generator: Comm interval Cont-Sens-Stop-Chan
+Distribution: Normal
+Number of obs: 16
+Seed: 168
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval Cont-Sens-Go-Chan
+Distribution: Normal
+Number of obs: 17
+Seed: 145
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval SideSens-Monitor-Arrival-Channel
+Distribution: Normal
+Number of obs: 17
+Seed: 122
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval MainSens-Monitor-Arrival-Channel
+Distribution: Normal
+Number of obs: 16
+Seed: 99
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval Cont-Monitor-Switch-Channel
+Distribution: Normal
+Number of obs: 33
+Seed: 76
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval Monitor-Cont-Arrive-Channel
+Distribution: Normal
+Number of obs: 33
+Seed: 53
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval Cont-Side-Light-Channel
+Distribution: Normal
+Number of obs: 49
+Seed: 30
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval Cont-Main-Light Channel
+Distribution: Normal
+Number of obs: 50
+Seed: 7
+Mean: 5.85
+Standard deviation: 1.25
+ 
+End Simulation of Simple Traffic Light System date: 12/8/2015 time: 23:20
+Elapsed computer time: 70 msec
+ 
+First Car arrived at time: 10.700458944771231
+Last Car arrived at time: 4880.297435342722
+Total cars that arrived: 33
+Number of Traffic Changes: 33
+Number of Light Changes: 99
+Average system reaction time: 5.937
+Average system response time: 2.652
+Worst reaction time: 8.953
+Worst response time: 5.049
+Number of deadlines missed when Controller comm with Light: 2

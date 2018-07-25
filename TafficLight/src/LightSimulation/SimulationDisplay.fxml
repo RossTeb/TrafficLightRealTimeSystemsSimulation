@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LightSimulation.GUIController">
+   <children>
+      <BorderPane prefHeight="401.0" prefWidth="600.0">
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem mnemonicParsing="false" text="Load Settings" />
+                        <MenuItem mnemonicParsing="false" text="Save Settings" />
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <left>
+            <VBox prefHeight="376.0" prefWidth="156.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Settings:" underline="true">
+                     <font>
+                        <Font name="Times New Roman Bold" size="17.0" />
+                     </font></Label>
+                  <Region prefHeight="69.0" prefWidth="151.0" />
+                  <HBox prefHeight="16.0" prefWidth="151.0">
+                     <children>
+                        <Label prefHeight="34.0" prefWidth="60.0" text="Sim Period:" />
+                        <Region prefHeight="25.0" prefWidth="37.0" />
+                        <TextField fx:id="simperiod" prefHeight="25.0" prefWidth="57.0" text="5000" />
+                     </children>
+                  </HBox>
+                  <Region prefHeight="53.0" prefWidth="156.0" />
+                  <HBox prefHeight="30.0" prefWidth="121.0">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="53.0" text="Trace File:" />
+                        <Region prefHeight="25.0" prefWidth="14.0" />
+                        <TextField fx:id="TraceFile" prefHeight="25.0" prefWidth="88.0" text="Traffictrace.txt" />
+                     </children>
+                  </HBox>
+                  <Region prefHeight="54.0" prefWidth="156.0" />
+                  <HBox prefHeight="32.0" prefWidth="121.0">
+                     <children>
+                        <Label prefHeight="31.0" prefWidth="45.0" text="Stat File:" />
+                        <Region prefHeight="25.0" prefWidth="15.0" />
+                        <TextField fx:id="StatFile" prefHeight="25.0" prefWidth="96.0" text="Trafficstat.txt" />
+                     </children>
+                  </HBox>
+                  <Region prefHeight="56.0" prefWidth="156.0" />
+                  <HBox prefHeight="31.0" prefWidth="140.0">
+                     <children>
+                        <Label prefHeight="32.0" prefWidth="61.0" text="Avg Arrival:" />
+                        <Region prefHeight="25.0" prefWidth="58.0" />
+                        <TextField fx:id="Avg_Arrival" prefHeight="25.0" prefWidth="36.0" text="70" />
+                     </children>
+                  </HBox>
+                  <Region prefHeight="55.0" prefWidth="156.0" />
+                  <HBox prefHeight="28.0" prefWidth="151.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="116.0" text="Light comm Deadline:" />
+                        <Region prefHeight="25.0" prefWidth="9.0" />
+                        <TextField fx:id="Light_comm_Deadline" prefHeight="25.0" prefWidth="30.0" text="5.0" />
+                     </children>
+                  </HBox>
+                  <Region prefHeight="52.0" prefWidth="151.0" />
+                  <HBox prefHeight="28.0" prefWidth="151.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="97.0" text="Sensor Stop time: " />
+                        <Region prefHeight="25.0" prefWidth="12.0" />
+                        <TextField fx:id="Sensor_Stop_Time" prefHeight="25.0" prefWidth="46.0" text="4950" />
+                     </children>
+                  </HBox>
+                  <Region prefHeight="52.0" prefWidth="151.0" />
+                  <HBox prefHeight="24.0" prefWidth="151.0">
+                     <children>
+                        <Label prefHeight="27.0" prefWidth="117.0" text="Required trigger time:" />
+                        <Region prefHeight="25.0" prefWidth="3.0" />
+                        <TextField fx:id="Required_Trigger_Time" prefHeight="25.0" prefWidth="35.0" text="6.0" />
+                     </children>
+                  </HBox>
+                  <Region prefHeight="53.0" prefWidth="151.0" />
+                  <HBox prefHeight="90.0" prefWidth="151.0">
+                     <children>
+                        <Label prefHeight="27.0" prefWidth="94.0" text="Avg Trigger Time:" />
+                        <Region prefHeight="43.0" prefWidth="27.0" />
+                        <TextField fx:id="Avg_Trigger_Time" prefHeight="25.0" prefWidth="33.0" text="7.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="141.0" prefWidth="151.0">
+                     <children>
+                        <Region prefHeight="95.0" prefWidth="39.0" />
+                        <Button fx:id="simbutton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SimStart" text="Simulate" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="376.0" prefWidth="446.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Trace:" underline="true">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font></Label>
+                  <TextArea fx:id="TraceDisplay" editable="false">
+                     <effect>
+                        <Glow />
+                     </effect></TextArea>
+                  <Label text="Stats:" underline="true">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <TextArea fx:id="StatDisplay" editable="false">
+                     <effect>
+                        <Glow />
+                     </effect></TextArea>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</VBox>

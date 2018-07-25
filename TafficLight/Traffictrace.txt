@@ -1,0 +1,1538 @@
+OOSimL model: Simple Traffic Light System
+Simulation date: 12/8/2015 time: 23:20
+------------------------- TRACE ---------------------------------
+0000.000 Monitor suspends while waiting for side street sensor
+0000.000 Main Street Light is Green
+0000.000 Main Street Light waiting for change signal
+0000.000 Main Street Light suspends until controller signal
+0000.000 Side Street Light is Red
+0000.000 Side Street Light waiting for change signal
+0000.000 Side Street Light suspends until controller signal
+0000.000 Main Street sensor suspends until red light
+0000.000 Main Street sensor suspends
+0000.000 Side Street sensor waits for car to arrive
+0000.000 Controller suspends
+0004.144 Side Street sensor detected waiting car
+0010.700 Monitor received signal from Sensor 
+0010.700 Number of cars is: 1
+0010.700 Side Street sensor sent signal to Monitor
+0010.700 Side Street sensor suspends
+0010.700 Monitor attempting comm with Controller
+0010.700 Monitor reactivated controller
+0010.700 Controller reactivated by Monitor
+0010.700 Controller change signal from monitor
+0017.350 Controller arrival signal from Monitor
+0017.350 Monitor sent change signal to Controller
+0017.350 Monitor suspends 
+0042.350 Controller attempt comm Light
+0045.842 Controller sending change signal to Light
+0045.842 Main Street Light reactivated from controller signal
+0045.842 Main Street Light waiting for change signal
+0052.749 Main Street Light received change signal 
+0052.749 Main Street Light has changed to Yellow
+0052.749 Controller sent yellow signal to main street
+0052.749 Main Street Light waiting for change signal
+0052.749 Main Street Light suspends until controller signal
+0057.749 Controller attempt comm Light
+0061.634 Controller sending change signal to Light
+0061.634 Main Street Light reactivated from controller signal
+0061.634 Main Street Light waiting for change signal
+0068.625 Main Street Light received change signal 
+0068.625 Main Street Light has changed to Red
+0068.625 Controller sent red signal to main street
+0068.625 Main Street Light waiting for change signal
+0068.625 Main Street Light suspends until controller signal
+0069.625 Controller attempt comm Light
+0074.058 Controller sending change signal to Light
+0074.058 Side Street Light reactivated from controller signal
+0074.058 Side Street Light waiting for change signal
+0080.824 Side Street Light received change signal 
+0080.824 Side Street Light has changed to Green
+0080.824 Controller sent green signal to side street
+0080.824 Side Street Light waiting for change signal
+0080.824 Side Street Light suspends until controller signal
+0087.149 Monitor received signal from Controller
+0087.149 Main street is green: true
+0087.149 Main street is green: false
+0087.149 Monitor suspends while waiting for main street sensor
+0087.149 Main Street sensor reactivated by Controller
+0092.291 Main Street sensor received reset signal from Controller 
+0092.291 Main Street sensor waits for car to arrive
+0092.291 Controller suspends
+0239.786 Main Street sensor detected waiting car
+0247.255 Monitor received signal from Sensor 
+0247.255 Number of cars is: 1
+0247.255 Main Street sensor sent signal to Monitor
+0247.255 Main Street sensor suspends
+0247.255 Monitor attempting comm with Controller
+0247.255 Monitor reactivated controller
+0247.255 Controller change signal from monitor
+0254.155 Controller arrival signal from Monitor
+0254.155 Monitor sent change signal to Controller
+0279.155 Controller attempt comm Light
+0281.757 Controller sending change signal to Light
+0281.757 Side Street Light reactivated from controller signal
+0281.757 Side Street Light waiting for change signal
+0286.512 Side Street Light received change signal 
+0286.512 Side Street Light has changed to Yellow
+0286.512 Controller sent yellow signal to side street
+0286.512 Side Street Light waiting for change signal
+0286.512 Side Street Light suspends until controller signal
+0291.512 Controller attempt comm Light
+0294.515 Controller sending change signal to Light
+0294.515 Side Street Light reactivated from controller signal
+0294.515 Side Street Light waiting for change signal
+0299.893 Side Street Light received change signal 
+0299.893 Side Street Light has changed to Red
+0299.893 Controller sent red signal to side street
+0299.893 Side Street Light waiting for change signal
+0299.893 Side Street Light suspends until controller signal
+0300.893 Controller attempt comm Light
+0304.919 Controller sending change signal to Light
+0304.919 Main Street Light reactivated from controller signal
+0304.919 Main Street Light waiting for change signal
+0310.410 Main Street Light received change signal 
+0310.410 Main Street Light has changed to Green
+0310.410 Controller sent green signal to main street
+0310.410 Main Street Light waiting for change signal
+0310.410 Main Street Light suspends until controller signal
+0315.467 Monitor received signal from Controller
+0315.467 Side street is green: false
+0315.467 Side street is green: true
+0315.467 Monitor suspends while waiting for side street sensor
+0315.467 Side Street sensor reactivated by Controller
+0322.752 Side Street sensor received reset signal from Controller 
+0322.752 Side Street sensor waits for car to arrive
+0322.752 Controller suspends
+0356.899 Side Street sensor detected waiting car
+0363.766 Monitor received signal from Sensor 
+0363.766 Number of cars is: 1
+0363.766 Side Street sensor sent signal to Monitor
+0363.766 Side Street sensor suspends
+0363.766 Monitor attempting comm with Controller
+0363.766 Monitor reactivated controller
+0363.766 Controller reactivated by Monitor
+0363.766 Controller change signal from monitor
+0369.691 Controller arrival signal from Monitor
+0369.691 Monitor sent change signal to Controller
+0369.691 Monitor suspends 
+0394.691 Controller attempt comm Light
+0399.064 Controller sending change signal to Light
+0399.064 Main Street Light reactivated from controller signal
+0399.064 Main Street Light waiting for change signal
+0405.853 Main Street Light received change signal 
+0405.853 Main Street Light has changed to Yellow
+0405.853 Controller sent yellow signal to main street
+0405.853 Main Street Light waiting for change signal
+0405.853 Main Street Light suspends until controller signal
+0410.853 Controller attempt comm Light
+0412.133 Controller sending change signal to Light
+0412.133 Main Street Light reactivated from controller signal
+0412.133 Main Street Light waiting for change signal
+0419.652 Main Street Light received change signal 
+0419.652 Main Street Light has changed to Red
+0419.652 Controller sent red signal to main street
+0419.652 Main Street Light waiting for change signal
+0419.652 Main Street Light suspends until controller signal
+0420.652 Controller attempt comm Light
+0425.470 Controller sending change signal to Light
+0425.470 Side Street Light reactivated from controller signal
+0425.470 Side Street Light waiting for change signal
+0431.912 Side Street Light received change signal 
+0431.912 Side Street Light has changed to Green
+0431.912 Controller sent green signal to side street
+0431.912 Side Street Light waiting for change signal
+0431.912 Side Street Light suspends until controller signal
+0439.920 Monitor received signal from Controller
+0439.920 Main street is green: true
+0439.920 Main street is green: false
+0439.920 Monitor suspends while waiting for main street sensor
+0439.920 Main Street sensor reactivated by Controller
+0446.084 Main Street sensor received reset signal from Controller 
+0446.084 Main Street sensor waits for car to arrive
+0446.084 Controller suspends
+0459.545 Main Street sensor detected waiting car
+0464.283 Monitor received signal from Sensor 
+0464.283 Number of cars is: 1
+0464.283 Main Street sensor sent signal to Monitor
+0464.283 Main Street sensor suspends
+0464.283 Monitor attempting comm with Controller
+0464.283 Monitor reactivated controller
+0464.283 Controller change signal from monitor
+0470.449 Controller arrival signal from Monitor
+0470.449 Monitor sent change signal to Controller
+0495.449 Controller attempt comm Light
+0496.510 Controller sending change signal to Light
+0496.510 Side Street Light reactivated from controller signal
+0496.510 Side Street Light waiting for change signal
+0501.246 Side Street Light received change signal 
+0501.246 Side Street Light has changed to Yellow
+0501.246 Controller sent yellow signal to side street
+0501.246 Side Street Light waiting for change signal
+0501.246 Side Street Light suspends until controller signal
+0506.246 Controller attempt comm Light
+0510.978 Controller sending change signal to Light
+0510.978 Side Street Light reactivated from controller signal
+0510.978 Side Street Light waiting for change signal
+0514.990 Side Street Light received change signal 
+0514.990 Side Street Light has changed to Red
+0514.990 Controller sent red signal to side street
+0514.990 Side Street Light waiting for change signal
+0514.990 Side Street Light suspends until controller signal
+0515.990 Controller attempt comm Light
+0516.751 Controller sending change signal to Light
+0516.751 Main Street Light reactivated from controller signal
+0516.751 Main Street Light waiting for change signal
+0521.413 Main Street Light received change signal 
+0521.413 Main Street Light has changed to Green
+0521.413 Controller sent green signal to main street
+0521.413 Main Street Light waiting for change signal
+0521.413 Main Street Light suspends until controller signal
+0527.019 Monitor received signal from Controller
+0527.019 Side street is green: false
+0527.019 Side street is green: true
+0527.019 Monitor suspends while waiting for side street sensor
+0527.019 Side Street sensor reactivated by Controller
+0531.791 Side Street sensor received reset signal from Controller 
+0531.791 Side Street sensor waits for car to arrive
+0531.791 Controller suspends
+0546.724 Side Street sensor detected waiting car
+0553.231 Monitor received signal from Sensor 
+0553.231 Number of cars is: 1
+0553.231 Side Street sensor sent signal to Monitor
+0553.231 Side Street sensor suspends
+0553.231 Monitor attempting comm with Controller
+0553.231 Monitor reactivated controller
+0553.231 Controller reactivated by Monitor
+0553.231 Controller change signal from monitor
+0556.311 Controller arrival signal from Monitor
+0556.311 Monitor sent change signal to Controller
+0556.311 Monitor suspends 
+0581.311 Controller attempt comm Light
+0585.259 Controller sending change signal to Light
+0585.259 Main Street Light reactivated from controller signal
+0585.259 Main Street Light waiting for change signal
+0591.858 Main Street Light received change signal 
+0591.858 Main Street Light has changed to Yellow
+0591.858 Controller sent yellow signal to main street
+0591.858 Main Street Light waiting for change signal
+0591.858 Main Street Light suspends until controller signal
+0596.858 Controller attempt comm Light
+0599.540 Controller sending change signal to Light
+0599.540 Main Street Light reactivated from controller signal
+0599.540 Main Street Light waiting for change signal
+0606.895 Main Street Light received change signal 
+0606.895 Main Street Light has changed to Red
+0606.895 Controller sent red signal to main street
+0606.895 Main Street Light waiting for change signal
+0606.895 Main Street Light suspends until controller signal
+0607.895 Controller attempt comm Light
+0612.200 Controller sending change signal to Light
+0612.200 Side Street Light reactivated from controller signal
+0612.200 Side Street Light waiting for change signal
+0618.470 Side Street Light received change signal 
+0618.470 Side Street Light has changed to Green
+0618.470 Controller sent green signal to side street
+0618.470 Side Street Light waiting for change signal
+0618.470 Side Street Light suspends until controller signal
+0621.901 Monitor received signal from Controller
+0621.901 Main street is green: true
+0621.901 Main street is green: false
+0621.901 Monitor suspends while waiting for main street sensor
+0621.901 Main Street sensor reactivated by Controller
+0628.136 Main Street sensor received reset signal from Controller 
+0628.136 Main Street sensor waits for car to arrive
+0628.136 Controller suspends
+0657.651 Main Street sensor detected waiting car
+0663.794 Monitor received signal from Sensor 
+0663.794 Number of cars is: 1
+0663.794 Main Street sensor sent signal to Monitor
+0663.794 Main Street sensor suspends
+0663.794 Monitor attempting comm with Controller
+0663.794 Monitor reactivated controller
+0663.794 Controller change signal from monitor
+0668.867 Controller arrival signal from Monitor
+0668.867 Monitor sent change signal to Controller
+0693.867 Controller attempt comm Light
+0695.451 Controller sending change signal to Light
+0695.451 Side Street Light reactivated from controller signal
+0695.451 Side Street Light waiting for change signal
+0701.052 Side Street Light received change signal 
+0701.052 Side Street Light has changed to Yellow
+0701.052 Controller sent yellow signal to side street
+0701.052 Side Street Light waiting for change signal
+0701.052 Side Street Light suspends until controller signal
+0706.052 Controller attempt comm Light
+0711.024 Controller sending change signal to Light
+0711.024 Side Street Light reactivated from controller signal
+0711.024 Side Street Light waiting for change signal
+0716.833 Side Street Light received change signal 
+0716.833 Side Street Light has changed to Red
+0716.833 Controller sent red signal to side street
+0716.833 Side Street Light waiting for change signal
+0716.833 Side Street Light suspends until controller signal
+0717.833 Controller attempt comm Light
+0721.230 Controller sending change signal to Light
+0721.230 Main Street Light reactivated from controller signal
+0721.230 Main Street Light waiting for change signal
+0730.183 Main Street Light received change signal 
+0730.183 Main Street Light has changed to Green
+0730.183 Controller sent green signal to main street
+0730.183 Main Street Light waiting for change signal
+0730.183 Main Street Light suspends until controller signal
+0737.125 Monitor received signal from Controller
+0737.125 Side street is green: false
+0737.125 Side street is green: true
+0737.125 Monitor suspends while waiting for side street sensor
+0737.125 Side Street sensor reactivated by Controller
+0742.456 Side Street sensor received reset signal from Controller 
+0742.456 Side Street sensor waits for car to arrive
+0742.456 Controller suspends
+0758.130 Side Street sensor detected waiting car
+0765.153 Monitor received signal from Sensor 
+0765.153 Number of cars is: 1
+0765.153 Side Street sensor sent signal to Monitor
+0765.153 Side Street sensor suspends
+0765.153 Monitor attempting comm with Controller
+0765.153 Monitor reactivated controller
+0765.153 Controller reactivated by Monitor
+0765.153 Controller change signal from monitor
+0771.056 Controller arrival signal from Monitor
+0771.056 Monitor sent change signal to Controller
+0771.056 Monitor suspends 
+0796.056 Controller attempt comm Light
+0800.788 Controller sending change signal to Light
+0800.788 Main Street Light reactivated from controller signal
+0800.788 Main Street Light waiting for change signal
+0805.696 Main Street Light received change signal 
+0805.696 Main Street Light has changed to Yellow
+0805.696 Controller sent yellow signal to main street
+0805.696 Main Street Light waiting for change signal
+0805.696 Main Street Light suspends until controller signal
+0810.696 Controller attempt comm Light
+0813.884 Controller sending change signal to Light
+0813.884 Main Street Light reactivated from controller signal
+0813.884 Main Street Light waiting for change signal
+0817.975 Main Street Light received change signal 
+0817.975 Main Street Light has changed to Red
+0817.975 Controller sent red signal to main street
+0817.975 Main Street Light waiting for change signal
+0817.975 Main Street Light suspends until controller signal
+0818.975 Controller attempt comm Light
+0821.035 Controller sending change signal to Light
+0821.035 Side Street Light reactivated from controller signal
+0821.035 Side Street Light waiting for change signal
+0827.535 Side Street Light received change signal 
+0827.535 Side Street Light has changed to Green
+0827.535 Controller sent green signal to side street
+0827.535 Side Street Light waiting for change signal
+0827.535 Side Street Light suspends until controller signal
+0832.773 Monitor received signal from Controller
+0832.773 Main street is green: true
+0832.773 Main street is green: false
+0832.773 Monitor suspends while waiting for main street sensor
+0832.773 Main Street sensor reactivated by Controller
+0837.666 Main Street sensor received reset signal from Controller 
+0837.666 Main Street sensor waits for car to arrive
+0837.666 Controller suspends
+0977.158 Main Street sensor detected waiting car
+0983.348 Monitor received signal from Sensor 
+0983.348 Number of cars is: 1
+0983.348 Main Street sensor sent signal to Monitor
+0983.348 Main Street sensor suspends
+0983.348 Monitor attempting comm with Controller
+0983.348 Monitor reactivated controller
+0983.348 Controller change signal from monitor
+0988.487 Controller arrival signal from Monitor
+0988.487 Monitor sent change signal to Controller
+1013.487 Controller attempt comm Light
+1015.287 Controller sending change signal to Light
+1015.287 Side Street Light reactivated from controller signal
+1015.287 Side Street Light waiting for change signal
+1021.355 Side Street Light received change signal 
+1021.355 Side Street Light has changed to Yellow
+1021.355 Controller sent yellow signal to side street
+1021.355 Side Street Light waiting for change signal
+1021.355 Side Street Light suspends until controller signal
+1026.355 Controller attempt comm Light
+1030.800 Controller sending change signal to Light
+1030.800 Side Street Light reactivated from controller signal
+1030.800 Side Street Light waiting for change signal
+1038.306 Side Street Light received change signal 
+1038.306 Side Street Light has changed to Red
+1038.306 Controller sent red signal to side street
+1038.306 Side Street Light waiting for change signal
+1038.306 Side Street Light suspends until controller signal
+1039.306 Controller attempt comm Light
+1041.313 Controller sending change signal to Light
+1041.313 Main Street Light reactivated from controller signal
+1041.313 Main Street Light waiting for change signal
+1046.323 Main Street Light received change signal 
+1046.323 Main Street Light has changed to Green
+1046.323 Controller sent green signal to main street
+1046.323 Main Street Light waiting for change signal
+1046.323 Main Street Light suspends until controller signal
+1052.342 Monitor received signal from Controller
+1052.342 Side street is green: false
+1052.342 Side street is green: true
+1052.342 Monitor suspends while waiting for side street sensor
+1052.342 Side Street sensor reactivated by Controller
+1060.426 Side Street sensor received reset signal from Controller 
+1060.426 Side Street sensor waits for car to arrive
+1060.426 Controller suspends
+1203.512 Side Street sensor detected waiting car
+1208.989 Monitor received signal from Sensor 
+1208.989 Number of cars is: 1
+1208.989 Side Street sensor sent signal to Monitor
+1208.989 Side Street sensor suspends
+1208.989 Monitor attempting comm with Controller
+1208.989 Monitor reactivated controller
+1208.989 Controller reactivated by Monitor
+1208.989 Controller change signal from monitor
+1214.284 Controller arrival signal from Monitor
+1214.284 Monitor sent change signal to Controller
+1214.284 Monitor suspends 
+1239.284 Controller attempt comm Light
+1243.930 Controller sending change signal to Light
+1243.930 Main Street Light reactivated from controller signal
+1243.930 Main Street Light waiting for change signal
+1250.648 Main Street Light received change signal 
+1250.648 Main Street Light has changed to Yellow
+1250.648 Controller sent yellow signal to main street
+1250.648 Main Street Light waiting for change signal
+1250.648 Main Street Light suspends until controller signal
+1255.648 Controller attempt comm Light
+1259.670 Controller sending change signal to Light
+1259.670 Main Street Light reactivated from controller signal
+1259.670 Main Street Light waiting for change signal
+1264.621 Main Street Light received change signal 
+1264.621 Main Street Light has changed to Red
+1264.621 Controller sent red signal to main street
+1264.621 Main Street Light waiting for change signal
+1264.621 Main Street Light suspends until controller signal
+1265.621 Controller attempt comm Light
+1268.212 Controller sending change signal to Light
+1268.212 Side Street Light reactivated from controller signal
+1268.212 Side Street Light waiting for change signal
+1273.607 Side Street Light received change signal 
+1273.607 Side Street Light has changed to Green
+1273.607 Controller sent green signal to side street
+1273.607 Side Street Light waiting for change signal
+1273.607 Side Street Light suspends until controller signal
+1279.979 Monitor received signal from Controller
+1279.979 Main street is green: true
+1279.979 Main street is green: false
+1279.979 Monitor suspends while waiting for main street sensor
+1279.979 Main Street sensor reactivated by Controller
+1288.072 Main Street sensor received reset signal from Controller 
+1288.072 Main Street sensor waits for car to arrive
+1288.072 Controller suspends
+1368.520 Main Street sensor detected waiting car
+1375.432 Monitor received signal from Sensor 
+1375.432 Number of cars is: 1
+1375.432 Main Street sensor sent signal to Monitor
+1375.432 Main Street sensor suspends
+1375.432 Monitor attempting comm with Controller
+1375.432 Monitor reactivated controller
+1375.432 Controller change signal from monitor
+1382.303 Controller arrival signal from Monitor
+1382.303 Monitor sent change signal to Controller
+1407.303 Controller attempt comm Light
+1409.620 Controller sending change signal to Light
+1409.620 Side Street Light reactivated from controller signal
+1409.620 Side Street Light waiting for change signal
+1414.751 Side Street Light received change signal 
+1414.751 Side Street Light has changed to Yellow
+1414.751 Controller sent yellow signal to side street
+1414.751 Side Street Light waiting for change signal
+1414.751 Side Street Light suspends until controller signal
+1419.751 Controller attempt comm Light
+1420.497 Controller sending change signal to Light
+1420.497 Side Street Light reactivated from controller signal
+1420.497 Side Street Light waiting for change signal
+1428.201 Side Street Light received change signal 
+1428.201 Side Street Light has changed to Red
+1428.201 Controller sent red signal to side street
+1428.201 Side Street Light waiting for change signal
+1428.201 Side Street Light suspends until controller signal
+1429.201 Controller attempt comm Light
+1434.057 Controller sending change signal to Light
+1434.057 Main Street Light reactivated from controller signal
+1434.057 Main Street Light waiting for change signal
+1439.406 Main Street Light received change signal 
+1439.406 Main Street Light has changed to Green
+1439.406 Controller sent green signal to main street
+1439.406 Main Street Light waiting for change signal
+1439.406 Main Street Light suspends until controller signal
+1447.257 Monitor received signal from Controller
+1447.257 Side street is green: false
+1447.257 Side street is green: true
+1447.257 Monitor suspends while waiting for side street sensor
+1447.257 Side Street sensor reactivated by Controller
+1453.060 Side Street sensor received reset signal from Controller 
+1453.060 Side Street sensor waits for car to arrive
+1453.060 Controller suspends
+1486.803 Side Street sensor detected waiting car
+1490.932 Monitor received signal from Sensor 
+1490.932 Number of cars is: 1
+1490.932 Side Street sensor sent signal to Monitor
+1490.932 Side Street sensor suspends
+1490.932 Monitor attempting comm with Controller
+1490.932 Monitor reactivated controller
+1490.932 Controller reactivated by Monitor
+1490.932 Controller change signal from monitor
+1497.740 Controller arrival signal from Monitor
+1497.740 Monitor sent change signal to Controller
+1497.740 Monitor suspends 
+1522.740 Controller attempt comm Light
+1523.845 Controller sending change signal to Light
+1523.845 Main Street Light reactivated from controller signal
+1523.845 Main Street Light waiting for change signal
+1530.677 Main Street Light received change signal 
+1530.677 Main Street Light has changed to Yellow
+1530.677 Controller sent yellow signal to main street
+1530.677 Main Street Light waiting for change signal
+1530.677 Main Street Light suspends until controller signal
+1535.677 Controller attempt comm Light
+1536.634 Controller sending change signal to Light
+1536.634 Main Street Light reactivated from controller signal
+1536.634 Main Street Light waiting for change signal
+1541.322 Main Street Light received change signal 
+1541.322 Main Street Light has changed to Red
+1541.322 Controller sent red signal to main street
+1541.322 Main Street Light waiting for change signal
+1541.322 Main Street Light suspends until controller signal
+1542.322 Controller attempt comm Light
+1546.061 Controller sending change signal to Light
+1546.061 Side Street Light reactivated from controller signal
+1546.061 Side Street Light waiting for change signal
+1551.472 Side Street Light received change signal 
+1551.472 Side Street Light has changed to Green
+1551.472 Controller sent green signal to side street
+1551.472 Side Street Light waiting for change signal
+1551.472 Side Street Light suspends until controller signal
+1556.387 Monitor received signal from Controller
+1556.387 Main street is green: true
+1556.387 Main street is green: false
+1556.387 Monitor suspends while waiting for main street sensor
+1556.387 Main Street sensor reactivated by Controller
+1561.046 Main Street sensor received reset signal from Controller 
+1561.046 Main Street sensor waits for car to arrive
+1561.046 Controller suspends
+1565.581 Main Street sensor detected waiting car
+1570.473 Monitor received signal from Sensor 
+1570.473 Number of cars is: 1
+1570.473 Main Street sensor sent signal to Monitor
+1570.473 Main Street sensor suspends
+1570.473 Monitor attempting comm with Controller
+1570.473 Monitor reactivated controller
+1570.473 Controller change signal from monitor
+1576.940 Controller arrival signal from Monitor
+1576.940 Monitor sent change signal to Controller
+1601.940 Controller attempt comm Light
+1603.782 Controller sending change signal to Light
+1603.782 Side Street Light reactivated from controller signal
+1603.782 Side Street Light waiting for change signal
+1611.712 Side Street Light received change signal 
+1611.712 Side Street Light has changed to Yellow
+1611.712 Controller sent yellow signal to side street
+1611.712 Side Street Light waiting for change signal
+1611.712 Side Street Light suspends until controller signal
+1616.712 Controller attempt comm Light
+1617.534 Controller sending change signal to Light
+1617.534 Side Street Light reactivated from controller signal
+1617.534 Side Street Light waiting for change signal
+1625.254 Side Street Light received change signal 
+1625.254 Side Street Light has changed to Red
+1625.254 Controller sent red signal to side street
+1625.254 Side Street Light waiting for change signal
+1625.254 Side Street Light suspends until controller signal
+1626.254 Controller attempt comm Light
+1630.546 Controller sending change signal to Light
+1630.546 Main Street Light reactivated from controller signal
+1630.546 Main Street Light waiting for change signal
+1636.223 Main Street Light received change signal 
+1636.223 Main Street Light has changed to Green
+1636.223 Controller sent green signal to main street
+1636.223 Main Street Light waiting for change signal
+1636.223 Main Street Light suspends until controller signal
+1643.665 Monitor received signal from Controller
+1643.665 Side street is green: false
+1643.665 Side street is green: true
+1643.665 Monitor suspends while waiting for side street sensor
+1643.665 Side Street sensor reactivated by Controller
+1650.380 Side Street sensor received reset signal from Controller 
+1650.380 Side Street sensor waits for car to arrive
+1650.380 Controller suspends
+1725.910 Side Street sensor detected waiting car
+1733.757 Monitor received signal from Sensor 
+1733.757 Number of cars is: 1
+1733.757 Side Street sensor sent signal to Monitor
+1733.757 Side Street sensor suspends
+1733.757 Monitor attempting comm with Controller
+1733.757 Monitor reactivated controller
+1733.757 Controller reactivated by Monitor
+1733.757 Controller change signal from monitor
+1738.951 Controller arrival signal from Monitor
+1738.951 Monitor sent change signal to Controller
+1738.951 Monitor suspends 
+1763.951 Controller attempt comm Light
+1766.841 Controller sending change signal to Light
+1766.841 Main Street Light reactivated from controller signal
+1766.841 Main Street Light waiting for change signal
+1772.759 Main Street Light received change signal 
+1772.759 Main Street Light has changed to Yellow
+1772.759 Controller sent yellow signal to main street
+1772.759 Main Street Light waiting for change signal
+1772.759 Main Street Light suspends until controller signal
+1777.759 Controller attempt comm Light
+1779.425 Controller sending change signal to Light
+1779.425 Main Street Light reactivated from controller signal
+1779.425 Main Street Light waiting for change signal
+1784.080 Main Street Light received change signal 
+1784.080 Main Street Light has changed to Red
+1784.080 Controller sent red signal to main street
+1784.080 Main Street Light waiting for change signal
+1784.080 Main Street Light suspends until controller signal
+1785.080 Controller attempt comm Light
+1789.160 Controller sending change signal to Light
+1789.160 Side Street Light reactivated from controller signal
+1789.160 Side Street Light waiting for change signal
+1796.851 Side Street Light received change signal 
+1796.851 Side Street Light has changed to Green
+1796.851 Controller sent green signal to side street
+1796.851 Side Street Light waiting for change signal
+1796.851 Side Street Light suspends until controller signal
+1803.513 Monitor received signal from Controller
+1803.513 Main street is green: true
+1803.513 Main street is green: false
+1803.513 Monitor suspends while waiting for main street sensor
+1803.513 Main Street sensor reactivated by Controller
+1807.870 Main Street sensor received reset signal from Controller 
+1807.870 Main Street sensor waits for car to arrive
+1807.870 Controller suspends
+1934.731 Main Street sensor waits for car to arrive
+2097.585 Main Street sensor detected waiting car
+2102.250 Monitor received signal from Sensor 
+2102.250 Number of cars is: 1
+2102.250 Main Street sensor sent signal to Monitor
+2102.250 Main Street sensor suspends
+2102.250 Monitor attempting comm with Controller
+2102.250 Monitor reactivated controller
+2102.250 Controller change signal from monitor
+2107.261 Controller arrival signal from Monitor
+2107.261 Monitor sent change signal to Controller
+2132.261 Controller attempt comm Light
+2133.560 Controller sending change signal to Light
+2133.560 Side Street Light reactivated from controller signal
+2133.560 Side Street Light waiting for change signal
+2139.960 Side Street Light received change signal 
+2139.960 Side Street Light has changed to Yellow
+2139.960 Controller sent yellow signal to side street
+2139.960 Side Street Light waiting for change signal
+2139.960 Side Street Light suspends until controller signal
+2144.960 Controller attempt comm Light
+2147.348 Controller sending change signal to Light
+2147.348 Side Street Light reactivated from controller signal
+2147.348 Side Street Light waiting for change signal
+2152.741 Side Street Light received change signal 
+2152.741 Side Street Light has changed to Red
+2152.741 Controller sent red signal to side street
+2152.741 Side Street Light waiting for change signal
+2152.741 Side Street Light suspends until controller signal
+2153.741 Controller attempt comm Light
+2155.348 Controller sending change signal to Light
+2155.348 Main Street Light reactivated from controller signal
+2155.348 Main Street Light waiting for change signal
+2161.922 Main Street Light received change signal 
+2161.922 Main Street Light has changed to Green
+2161.922 Controller sent green signal to main street
+2161.922 Main Street Light waiting for change signal
+2161.922 Main Street Light suspends until controller signal
+2167.045 Monitor received signal from Controller
+2167.045 Side street is green: false
+2167.045 Side street is green: true
+2167.045 Monitor suspends while waiting for side street sensor
+2167.045 Side Street sensor reactivated by Controller
+2173.710 Side Street sensor received reset signal from Controller 
+2173.710 Side Street sensor waits for car to arrive
+2173.710 Controller suspends
+2215.298 Side Street sensor detected waiting car
+2221.873 Monitor received signal from Sensor 
+2221.873 Number of cars is: 1
+2221.873 Side Street sensor sent signal to Monitor
+2221.873 Side Street sensor suspends
+2221.873 Monitor attempting comm with Controller
+2221.873 Monitor reactivated controller
+2221.873 Controller reactivated by Monitor
+2221.873 Controller change signal from monitor
+2227.725 Controller arrival signal from Monitor
+2227.725 Monitor sent change signal to Controller
+2227.725 Monitor suspends 
+2252.725 Controller attempt comm Light
+2254.031 Controller sending change signal to Light
+2254.031 Main Street Light reactivated from controller signal
+2254.031 Main Street Light waiting for change signal
+2261.726 Main Street Light received change signal 
+2261.726 Main Street Light has changed to Yellow
+2261.726 Controller sent yellow signal to main street
+2261.726 Main Street Light waiting for change signal
+2261.726 Main Street Light suspends until controller signal
+2266.726 Controller attempt comm Light
+2270.460 Controller sending change signal to Light
+2270.460 Main Street Light reactivated from controller signal
+2270.460 Main Street Light waiting for change signal
+2275.855 Main Street Light received change signal 
+2275.855 Main Street Light has changed to Red
+2275.855 Controller sent red signal to main street
+2275.855 Main Street Light waiting for change signal
+2275.855 Main Street Light suspends until controller signal
+2276.855 Controller attempt comm Light
+2279.534 Controller sending change signal to Light
+2279.534 Side Street Light reactivated from controller signal
+2279.534 Side Street Light waiting for change signal
+2282.681 Side Street Light received change signal 
+2282.681 Side Street Light has changed to Green
+2282.681 Controller sent green signal to side street
+2282.681 Side Street Light waiting for change signal
+2282.681 Side Street Light suspends until controller signal
+2289.359 Monitor received signal from Controller
+2289.359 Main street is green: true
+2289.359 Main street is green: false
+2289.359 Monitor suspends while waiting for main street sensor
+2289.359 Main Street sensor reactivated by Controller
+2295.369 Main Street sensor received reset signal from Controller 
+2295.369 Main Street sensor waits for car to arrive
+2295.369 Controller suspends
+2405.683 Main Street sensor detected waiting car
+2413.147 Monitor received signal from Sensor 
+2413.147 Number of cars is: 1
+2413.147 Main Street sensor sent signal to Monitor
+2413.147 Main Street sensor suspends
+2413.147 Monitor attempting comm with Controller
+2413.147 Monitor reactivated controller
+2413.147 Controller change signal from monitor
+2420.233 Controller arrival signal from Monitor
+2420.233 Monitor sent change signal to Controller
+2445.233 Controller attempt comm Light
+2446.958 Controller sending change signal to Light
+2446.958 Side Street Light reactivated from controller signal
+2446.958 Side Street Light waiting for change signal
+2452.119 Side Street Light received change signal 
+2452.119 Side Street Light has changed to Yellow
+2452.119 Controller sent yellow signal to side street
+2452.119 Side Street Light waiting for change signal
+2452.119 Side Street Light suspends until controller signal
+2457.119 Controller attempt comm Light
+2461.635 Controller sending change signal to Light
+2461.635 Side Street Light reactivated from controller signal
+2461.635 Side Street Light waiting for change signal
+2468.093 Side Street Light received change signal 
+2468.093 Side Street Light has changed to Red
+2468.093 Controller sent red signal to side street
+2468.093 Side Street Light waiting for change signal
+2468.093 Side Street Light suspends until controller signal
+2469.093 Controller attempt comm Light
+2470.165 Controller sending change signal to Light
+2470.165 Main Street Light reactivated from controller signal
+2470.165 Main Street Light waiting for change signal
+2477.424 Main Street Light received change signal 
+2477.424 Main Street Light has changed to Green
+2477.424 Controller sent green signal to main street
+2477.424 Main Street Light waiting for change signal
+2477.424 Main Street Light suspends until controller signal
+2483.081 Monitor received signal from Controller
+2483.081 Side street is green: false
+2483.081 Side street is green: true
+2483.081 Monitor suspends while waiting for side street sensor
+2483.081 Side Street sensor reactivated by Controller
+2488.533 Side Street sensor received reset signal from Controller 
+2488.533 Side Street sensor waits for car to arrive
+2488.533 Controller suspends
+2516.504 Side Street sensor waits for car to arrive
+2527.455 Side Street sensor detected waiting car
+2534.822 Monitor received signal from Sensor 
+2534.822 Number of cars is: 1
+2534.822 Side Street sensor sent signal to Monitor
+2534.822 Side Street sensor suspends
+2534.822 Monitor attempting comm with Controller
+2534.822 Monitor reactivated controller
+2534.822 Controller reactivated by Monitor
+2534.822 Controller change signal from monitor
+2541.503 Controller arrival signal from Monitor
+2541.503 Monitor sent change signal to Controller
+2541.503 Monitor suspends 
+2566.503 Controller attempt comm Light
+2568.449 Controller sending change signal to Light
+2568.449 Main Street Light reactivated from controller signal
+2568.449 Main Street Light waiting for change signal
+2572.213 Main Street Light received change signal 
+2572.213 Main Street Light has changed to Yellow
+2572.213 Controller sent yellow signal to main street
+2572.213 Main Street Light waiting for change signal
+2572.213 Main Street Light suspends until controller signal
+2577.213 Controller attempt comm Light
+2579.936 Controller sending change signal to Light
+2579.936 Main Street Light reactivated from controller signal
+2579.936 Main Street Light waiting for change signal
+2582.855 Main Street Light received change signal 
+2582.855 Main Street Light has changed to Red
+2582.855 Controller sent red signal to main street
+2582.855 Main Street Light waiting for change signal
+2582.855 Main Street Light suspends until controller signal
+2583.855 Controller attempt comm Light
+2585.211 Controller sending change signal to Light
+2585.211 Side Street Light reactivated from controller signal
+2585.211 Side Street Light waiting for change signal
+2591.161 Side Street Light received change signal 
+2591.161 Side Street Light has changed to Green
+2591.161 Controller sent green signal to side street
+2591.161 Side Street Light waiting for change signal
+2591.161 Side Street Light suspends until controller signal
+2597.217 Monitor received signal from Controller
+2597.217 Main street is green: true
+2597.217 Main street is green: false
+2597.217 Monitor suspends while waiting for main street sensor
+2597.217 Main Street sensor reactivated by Controller
+2603.448 Main Street sensor received reset signal from Controller 
+2603.448 Main Street sensor waits for car to arrive
+2603.448 Controller suspends
+2624.088 Main Street sensor detected waiting car
+2627.412 Monitor received signal from Sensor 
+2627.412 Number of cars is: 1
+2627.412 Main Street sensor sent signal to Monitor
+2627.412 Main Street sensor suspends
+2627.412 Monitor attempting comm with Controller
+2627.412 Monitor reactivated controller
+2627.412 Controller change signal from monitor
+2634.157 Controller arrival signal from Monitor
+2634.157 Monitor sent change signal to Controller
+2659.157 Controller attempt comm Light
+2660.481 Controller sending change signal to Light
+2660.481 Side Street Light reactivated from controller signal
+2660.481 Side Street Light waiting for change signal
+2666.627 Side Street Light received change signal 
+2666.627 Side Street Light has changed to Yellow
+2666.627 Controller sent yellow signal to side street
+2666.627 Side Street Light waiting for change signal
+2666.627 Side Street Light suspends until controller signal
+2671.627 Controller attempt comm Light
+2672.509 Controller sending change signal to Light
+2672.509 Side Street Light reactivated from controller signal
+2672.509 Side Street Light waiting for change signal
+2676.964 Side Street Light received change signal 
+2676.964 Side Street Light has changed to Red
+2676.964 Controller sent red signal to side street
+2676.964 Side Street Light waiting for change signal
+2676.964 Side Street Light suspends until controller signal
+2677.964 Controller attempt comm Light
+2682.867 Controller sending change signal to Light
+2682.867 Main Street Light reactivated from controller signal
+2682.867 Main Street Light waiting for change signal
+2689.250 Main Street Light received change signal 
+2689.250 Main Street Light has changed to Green
+2689.250 Controller sent green signal to main street
+2689.250 Main Street Light waiting for change signal
+2689.250 Main Street Light suspends until controller signal
+2697.795 Monitor received signal from Controller
+2697.795 Side street is green: false
+2697.795 Side street is green: true
+2697.795 Monitor suspends while waiting for side street sensor
+2697.795 Side Street sensor reactivated by Controller
+2703.707 Side Street sensor received reset signal from Controller 
+2703.707 Side Street sensor waits for car to arrive
+2703.707 Controller suspends
+2718.477 Side Street sensor detected waiting car
+2724.708 Monitor received signal from Sensor 
+2724.708 Number of cars is: 1
+2724.708 Side Street sensor sent signal to Monitor
+2724.708 Side Street sensor suspends
+2724.708 Monitor attempting comm with Controller
+2724.708 Monitor reactivated controller
+2724.708 Controller reactivated by Monitor
+2724.708 Controller change signal from monitor
+2732.522 Controller arrival signal from Monitor
+2732.522 Monitor sent change signal to Controller
+2732.522 Monitor suspends 
+2757.522 Controller attempt comm Light
+2759.310 Controller sending change signal to Light
+2759.310 Main Street Light reactivated from controller signal
+2759.310 Main Street Light waiting for change signal
+2763.577 Main Street Light received change signal 
+2763.577 Main Street Light has changed to Yellow
+2763.577 Controller sent yellow signal to main street
+2763.577 Main Street Light waiting for change signal
+2763.577 Main Street Light suspends until controller signal
+2768.577 Controller attempt comm Light
+2770.486 Controller sending change signal to Light
+2770.486 Main Street Light reactivated from controller signal
+2770.486 Main Street Light waiting for change signal
+2778.209 Main Street Light received change signal 
+2778.209 Main Street Light has changed to Red
+2778.209 Controller sent red signal to main street
+2778.209 Main Street Light waiting for change signal
+2778.209 Main Street Light suspends until controller signal
+2779.209 Controller attempt comm Light
+2782.445 Controller sending change signal to Light
+2782.445 Side Street Light reactivated from controller signal
+2782.445 Side Street Light waiting for change signal
+2789.067 Side Street Light received change signal 
+2789.067 Side Street Light has changed to Green
+2789.067 Controller sent green signal to side street
+2789.067 Side Street Light waiting for change signal
+2789.067 Side Street Light suspends until controller signal
+2794.351 Monitor received signal from Controller
+2794.351 Main street is green: true
+2794.351 Main street is green: false
+2794.351 Monitor suspends while waiting for main street sensor
+2794.351 Main Street sensor reactivated by Controller
+2800.669 Main Street sensor received reset signal from Controller 
+2800.669 Main Street sensor waits for car to arrive
+2800.669 Controller suspends
+2822.824 Main Street sensor detected waiting car
+2829.392 Monitor received signal from Sensor 
+2829.392 Number of cars is: 1
+2829.392 Main Street sensor sent signal to Monitor
+2829.392 Main Street sensor suspends
+2829.392 Monitor attempting comm with Controller
+2829.392 Monitor reactivated controller
+2829.392 Controller change signal from monitor
+2834.451 Controller arrival signal from Monitor
+2834.451 Monitor sent change signal to Controller
+2859.451 Controller attempt comm Light
+2862.825 Controller sending change signal to Light
+2862.825 Side Street Light reactivated from controller signal
+2862.825 Side Street Light waiting for change signal
+2868.427 Side Street Light received change signal 
+2868.427 Side Street Light has changed to Yellow
+2868.427 Controller sent yellow signal to side street
+2868.427 Side Street Light waiting for change signal
+2868.427 Side Street Light suspends until controller signal
+2873.427 Controller attempt comm Light
+2874.687 Controller sending change signal to Light
+2874.687 Side Street Light reactivated from controller signal
+2874.687 Side Street Light waiting for change signal
+2881.245 Side Street Light received change signal 
+2881.245 Side Street Light has changed to Red
+2881.245 Controller sent red signal to side street
+2881.245 Side Street Light waiting for change signal
+2881.245 Side Street Light suspends until controller signal
+2882.245 Controller attempt comm Light
+2886.057 Controller sending change signal to Light
+2886.057 Main Street Light reactivated from controller signal
+2886.057 Main Street Light waiting for change signal
+2893.849 Main Street Light received change signal 
+2893.849 Main Street Light has changed to Green
+2893.849 Controller sent green signal to main street
+2893.849 Main Street Light waiting for change signal
+2893.849 Main Street Light suspends until controller signal
+2901.485 Monitor received signal from Controller
+2901.485 Side street is green: false
+2901.485 Side street is green: true
+2901.485 Monitor suspends while waiting for side street sensor
+2901.485 Side Street sensor reactivated by Controller
+2908.575 Side Street sensor received reset signal from Controller 
+2908.575 Side Street sensor waits for car to arrive
+2908.575 Controller suspends
+2915.223 Side Street sensor detected waiting car
+2921.076 Monitor received signal from Sensor 
+2921.076 Number of cars is: 1
+2921.076 Side Street sensor sent signal to Monitor
+2921.076 Side Street sensor suspends
+2921.076 Monitor attempting comm with Controller
+2921.076 Monitor reactivated controller
+2921.076 Controller reactivated by Monitor
+2921.076 Controller change signal from monitor
+2927.518 Controller arrival signal from Monitor
+2927.518 Monitor sent change signal to Controller
+2927.518 Monitor suspends 
+2952.518 Controller attempt comm Light
+2954.492 Controller sending change signal to Light
+2954.492 Main Street Light reactivated from controller signal
+2954.492 Main Street Light waiting for change signal
+2960.355 Main Street Light received change signal 
+2960.355 Main Street Light has changed to Yellow
+2960.355 Controller sent yellow signal to main street
+2960.355 Main Street Light waiting for change signal
+2960.355 Main Street Light suspends until controller signal
+2965.355 Controller attempt comm Light
+2969.414 Controller sending change signal to Light
+2969.414 Main Street Light reactivated from controller signal
+2969.414 Main Street Light waiting for change signal
+2976.203 Main Street Light received change signal 
+2976.203 Main Street Light has changed to Red
+2976.203 Controller sent red signal to main street
+2976.203 Main Street Light waiting for change signal
+2976.203 Main Street Light suspends until controller signal
+2977.203 Controller attempt comm Light
+2982.253 **** Controller timeout when comm with Light
+2982.253 Controller sending change signal to Light
+2982.253 Side Street Light reactivated from controller signal
+2982.253 Side Street Light waiting for change signal
+2988.046 Side Street Light received change signal 
+2988.046 Side Street Light has changed to Green
+2988.046 Controller sent green signal to side street
+2988.046 Side Street Light waiting for change signal
+2988.046 Side Street Light suspends until controller signal
+2993.465 Monitor received signal from Controller
+2993.465 Main street is green: true
+2993.465 Main street is green: false
+2993.465 Monitor suspends while waiting for main street sensor
+2993.465 Main Street sensor reactivated by Controller
+2998.318 Main Street sensor received reset signal from Controller 
+2998.318 Main Street sensor waits for car to arrive
+2998.318 Controller suspends
+3029.459 Main Street sensor detected waiting car
+3038.079 Monitor received signal from Sensor 
+3038.079 Number of cars is: 1
+3038.079 Main Street sensor sent signal to Monitor
+3038.079 Main Street sensor suspends
+3038.079 Monitor attempting comm with Controller
+3038.079 Monitor reactivated controller
+3038.079 Controller change signal from monitor
+3043.220 Controller arrival signal from Monitor
+3043.220 Monitor sent change signal to Controller
+3068.220 Controller attempt comm Light
+3069.181 Controller sending change signal to Light
+3069.181 Side Street Light reactivated from controller signal
+3069.181 Side Street Light waiting for change signal
+3077.121 Side Street Light received change signal 
+3077.121 Side Street Light has changed to Yellow
+3077.121 Controller sent yellow signal to side street
+3077.121 Side Street Light waiting for change signal
+3077.121 Side Street Light suspends until controller signal
+3082.121 Controller attempt comm Light
+3082.696 Controller sending change signal to Light
+3082.696 Side Street Light reactivated from controller signal
+3082.696 Side Street Light waiting for change signal
+3087.286 Side Street Light received change signal 
+3087.286 Side Street Light has changed to Red
+3087.286 Controller sent red signal to side street
+3087.286 Side Street Light waiting for change signal
+3087.286 Side Street Light suspends until controller signal
+3088.286 Controller attempt comm Light
+3089.424 Controller sending change signal to Light
+3089.424 Main Street Light reactivated from controller signal
+3089.424 Main Street Light waiting for change signal
+3095.170 Main Street Light received change signal 
+3095.170 Main Street Light has changed to Green
+3095.170 Controller sent green signal to main street
+3095.170 Main Street Light waiting for change signal
+3095.170 Main Street Light suspends until controller signal
+3101.658 Monitor received signal from Controller
+3101.658 Side street is green: false
+3101.658 Side street is green: true
+3101.658 Monitor suspends while waiting for side street sensor
+3101.658 Side Street sensor reactivated by Controller
+3105.893 Side Street sensor received reset signal from Controller 
+3105.893 Side Street sensor waits for car to arrive
+3105.893 Controller suspends
+3294.610 Side Street sensor detected waiting car
+3298.165 Monitor received signal from Sensor 
+3298.165 Number of cars is: 1
+3298.165 Side Street sensor sent signal to Monitor
+3298.165 Side Street sensor suspends
+3298.165 Monitor attempting comm with Controller
+3298.165 Monitor reactivated controller
+3298.165 Controller reactivated by Monitor
+3298.165 Controller change signal from monitor
+3302.790 Controller arrival signal from Monitor
+3302.790 Monitor sent change signal to Controller
+3302.790 Monitor suspends 
+3327.790 Controller attempt comm Light
+3330.094 Controller sending change signal to Light
+3330.094 Main Street Light reactivated from controller signal
+3330.094 Main Street Light waiting for change signal
+3336.274 Main Street Light received change signal 
+3336.274 Main Street Light has changed to Yellow
+3336.274 Controller sent yellow signal to main street
+3336.274 Main Street Light waiting for change signal
+3336.274 Main Street Light suspends until controller signal
+3341.274 Controller attempt comm Light
+3344.362 Controller sending change signal to Light
+3344.362 Main Street Light reactivated from controller signal
+3344.362 Main Street Light waiting for change signal
+3349.789 Main Street Light received change signal 
+3349.789 Main Street Light has changed to Red
+3349.789 Controller sent red signal to main street
+3349.789 Main Street Light waiting for change signal
+3349.789 Main Street Light suspends until controller signal
+3350.789 Controller attempt comm Light
+3354.603 Controller sending change signal to Light
+3354.603 Side Street Light reactivated from controller signal
+3354.603 Side Street Light waiting for change signal
+3361.396 Side Street Light received change signal 
+3361.396 Side Street Light has changed to Green
+3361.396 Controller sent green signal to side street
+3361.396 Side Street Light waiting for change signal
+3361.396 Side Street Light suspends until controller signal
+3368.579 Monitor received signal from Controller
+3368.579 Main street is green: true
+3368.579 Main street is green: false
+3368.579 Monitor suspends while waiting for main street sensor
+3368.579 Main Street sensor reactivated by Controller
+3374.993 Main Street sensor received reset signal from Controller 
+3374.993 Main Street sensor waits for car to arrive
+3374.993 Controller suspends
+3500.117 Main Street sensor detected waiting car
+3506.846 Monitor received signal from Sensor 
+3506.846 Number of cars is: 1
+3506.846 Main Street sensor sent signal to Monitor
+3506.846 Main Street sensor suspends
+3506.846 Monitor attempting comm with Controller
+3506.846 Monitor reactivated controller
+3506.846 Controller change signal from monitor
+3512.016 Controller arrival signal from Monitor
+3512.016 Monitor sent change signal to Controller
+3537.016 Controller attempt comm Light
+3540.676 Controller sending change signal to Light
+3540.676 Side Street Light reactivated from controller signal
+3540.676 Side Street Light waiting for change signal
+3549.105 Side Street Light received change signal 
+3549.105 Side Street Light has changed to Yellow
+3549.105 Controller sent yellow signal to side street
+3549.105 Side Street Light waiting for change signal
+3549.105 Side Street Light suspends until controller signal
+3554.105 Controller attempt comm Light
+3554.796 Controller sending change signal to Light
+3554.796 Side Street Light reactivated from controller signal
+3554.796 Side Street Light waiting for change signal
+3559.317 Side Street Light received change signal 
+3559.317 Side Street Light has changed to Red
+3559.317 Controller sent red signal to side street
+3559.317 Side Street Light waiting for change signal
+3559.317 Side Street Light suspends until controller signal
+3560.317 Controller attempt comm Light
+3563.368 Controller sending change signal to Light
+3563.368 Main Street Light reactivated from controller signal
+3563.368 Main Street Light waiting for change signal
+3571.177 Main Street Light received change signal 
+3571.177 Main Street Light has changed to Green
+3571.177 Controller sent green signal to main street
+3571.177 Main Street Light waiting for change signal
+3571.177 Main Street Light suspends until controller signal
+3576.365 Monitor received signal from Controller
+3576.365 Side street is green: false
+3576.365 Side street is green: true
+3576.365 Monitor suspends while waiting for side street sensor
+3576.365 Side Street sensor reactivated by Controller
+3582.203 Side Street sensor received reset signal from Controller 
+3582.203 Side Street sensor waits for car to arrive
+3582.203 Controller suspends
+3823.440 Side Street sensor detected waiting car
+3830.369 Monitor received signal from Sensor 
+3830.369 Number of cars is: 1
+3830.369 Side Street sensor sent signal to Monitor
+3830.369 Side Street sensor suspends
+3830.369 Monitor attempting comm with Controller
+3830.369 Monitor reactivated controller
+3830.369 Controller reactivated by Monitor
+3830.369 Controller change signal from monitor
+3835.393 Controller arrival signal from Monitor
+3835.393 Monitor sent change signal to Controller
+3835.393 Monitor suspends 
+3860.393 Controller attempt comm Light
+3864.171 Controller sending change signal to Light
+3864.171 Main Street Light reactivated from controller signal
+3864.171 Main Street Light waiting for change signal
+3869.017 Main Street Light received change signal 
+3869.017 Main Street Light has changed to Yellow
+3869.017 Controller sent yellow signal to main street
+3869.017 Main Street Light waiting for change signal
+3869.017 Main Street Light suspends until controller signal
+3874.017 Controller attempt comm Light
+3879.023 **** Controller timeout when comm with Light
+3879.023 Controller sending change signal to Light
+3879.023 Main Street Light reactivated from controller signal
+3879.023 Main Street Light waiting for change signal
+3883.326 Main Street Light received change signal 
+3883.326 Main Street Light has changed to Red
+3883.326 Controller sent red signal to main street
+3883.326 Main Street Light waiting for change signal
+3883.326 Main Street Light suspends until controller signal
+3884.326 Controller attempt comm Light
+3887.696 Controller sending change signal to Light
+3887.696 Side Street Light reactivated from controller signal
+3887.696 Side Street Light waiting for change signal
+3895.812 Side Street Light received change signal 
+3895.812 Side Street Light has changed to Green
+3895.812 Controller sent green signal to side street
+3895.812 Side Street Light waiting for change signal
+3895.812 Side Street Light suspends until controller signal
+3899.964 Monitor received signal from Controller
+3899.964 Main street is green: true
+3899.964 Main street is green: false
+3899.964 Monitor suspends while waiting for main street sensor
+3899.964 Main Street sensor reactivated by Controller
+3907.821 Main Street sensor received reset signal from Controller 
+3907.821 Main Street sensor waits for car to arrive
+3907.821 Controller suspends
+3925.045 Main Street sensor detected waiting car
+3929.545 Monitor received signal from Sensor 
+3929.545 Number of cars is: 1
+3929.545 Main Street sensor sent signal to Monitor
+3929.545 Main Street sensor suspends
+3929.545 Monitor attempting comm with Controller
+3929.545 Monitor reactivated controller
+3929.545 Controller change signal from monitor
+3934.297 Controller arrival signal from Monitor
+3934.297 Monitor sent change signal to Controller
+3959.297 Controller attempt comm Light
+3961.103 Controller sending change signal to Light
+3961.103 Side Street Light reactivated from controller signal
+3961.103 Side Street Light waiting for change signal
+3966.920 Side Street Light received change signal 
+3966.920 Side Street Light has changed to Yellow
+3966.920 Controller sent yellow signal to side street
+3966.920 Side Street Light waiting for change signal
+3966.920 Side Street Light suspends until controller signal
+3971.920 Controller attempt comm Light
+3972.938 Controller sending change signal to Light
+3972.938 Side Street Light reactivated from controller signal
+3972.938 Side Street Light waiting for change signal
+3978.095 Side Street Light received change signal 
+3978.095 Side Street Light has changed to Red
+3978.095 Controller sent red signal to side street
+3978.095 Side Street Light waiting for change signal
+3978.095 Side Street Light suspends until controller signal
+3979.095 Controller attempt comm Light
+3981.591 Controller sending change signal to Light
+3981.591 Main Street Light reactivated from controller signal
+3981.591 Main Street Light waiting for change signal
+3985.114 Main Street Light received change signal 
+3985.114 Main Street Light has changed to Green
+3985.114 Controller sent green signal to main street
+3985.114 Main Street Light waiting for change signal
+3985.114 Main Street Light suspends until controller signal
+3990.952 Monitor received signal from Controller
+3990.952 Side street is green: false
+3990.952 Side street is green: true
+3990.952 Monitor suspends while waiting for side street sensor
+3990.952 Side Street sensor reactivated by Controller
+3996.742 Side Street sensor received reset signal from Controller 
+3996.742 Side Street sensor waits for car to arrive
+3996.742 Controller suspends
+4074.253 Side Street sensor detected waiting car
+4079.643 Monitor received signal from Sensor 
+4079.643 Number of cars is: 1
+4079.643 Side Street sensor sent signal to Monitor
+4079.643 Side Street sensor suspends
+4079.643 Monitor attempting comm with Controller
+4079.643 Monitor reactivated controller
+4079.643 Controller reactivated by Monitor
+4079.643 Controller change signal from monitor
+4088.215 Controller arrival signal from Monitor
+4088.215 Monitor sent change signal to Controller
+4088.215 Monitor suspends 
+4113.215 Controller attempt comm Light
+4116.858 Controller sending change signal to Light
+4116.858 Main Street Light reactivated from controller signal
+4116.858 Main Street Light waiting for change signal
+4123.768 Main Street Light received change signal 
+4123.768 Main Street Light has changed to Yellow
+4123.768 Controller sent yellow signal to main street
+4123.768 Main Street Light waiting for change signal
+4123.768 Main Street Light suspends until controller signal
+4128.768 Controller attempt comm Light
+4131.310 Controller sending change signal to Light
+4131.310 Main Street Light reactivated from controller signal
+4131.310 Main Street Light waiting for change signal
+4136.686 Main Street Light received change signal 
+4136.686 Main Street Light has changed to Red
+4136.686 Controller sent red signal to main street
+4136.686 Main Street Light waiting for change signal
+4136.686 Main Street Light suspends until controller signal
+4137.686 Controller attempt comm Light
+4138.274 Controller sending change signal to Light
+4138.274 Side Street Light reactivated from controller signal
+4138.274 Side Street Light waiting for change signal
+4143.635 Side Street Light received change signal 
+4143.635 Side Street Light has changed to Green
+4143.635 Controller sent green signal to side street
+4143.635 Side Street Light waiting for change signal
+4143.635 Side Street Light suspends until controller signal
+4150.488 Monitor received signal from Controller
+4150.488 Main street is green: true
+4150.488 Main street is green: false
+4150.488 Monitor suspends while waiting for main street sensor
+4150.488 Main Street sensor reactivated by Controller
+4157.509 Main Street sensor received reset signal from Controller 
+4157.509 Main Street sensor waits for car to arrive
+4157.509 Controller suspends
+4193.917 Main Street sensor detected waiting car
+4198.342 Monitor received signal from Sensor 
+4198.342 Number of cars is: 1
+4198.342 Main Street sensor sent signal to Monitor
+4198.342 Main Street sensor suspends
+4198.342 Monitor attempting comm with Controller
+4198.342 Monitor reactivated controller
+4198.342 Controller change signal from monitor
+4202.504 Controller arrival signal from Monitor
+4202.504 Monitor sent change signal to Controller
+4227.504 Controller attempt comm Light
+4228.008 Controller sending change signal to Light
+4228.008 Side Street Light reactivated from controller signal
+4228.008 Side Street Light waiting for change signal
+4233.156 Side Street Light received change signal 
+4233.156 Side Street Light has changed to Yellow
+4233.156 Controller sent yellow signal to side street
+4233.156 Side Street Light waiting for change signal
+4233.156 Side Street Light suspends until controller signal
+4238.156 Controller attempt comm Light
+4238.852 Controller sending change signal to Light
+4238.852 Side Street Light reactivated from controller signal
+4238.852 Side Street Light waiting for change signal
+4244.125 Side Street Light received change signal 
+4244.125 Side Street Light has changed to Red
+4244.125 Controller sent red signal to side street
+4244.125 Side Street Light waiting for change signal
+4244.125 Side Street Light suspends until controller signal
+4245.125 Controller attempt comm Light
+4245.933 Controller sending change signal to Light
+4245.933 Main Street Light reactivated from controller signal
+4245.933 Main Street Light waiting for change signal
+4250.170 Main Street Light received change signal 
+4250.170 Main Street Light has changed to Green
+4250.170 Controller sent green signal to main street
+4250.170 Main Street Light waiting for change signal
+4250.170 Main Street Light suspends until controller signal
+4256.775 Monitor received signal from Controller
+4256.775 Side street is green: false
+4256.775 Side street is green: true
+4256.775 Monitor suspends while waiting for side street sensor
+4256.775 Side Street sensor reactivated by Controller
+4262.007 Side Street sensor received reset signal from Controller 
+4262.007 Side Street sensor waits for car to arrive
+4262.007 Controller suspends
+4499.284 Side Street sensor detected waiting car
+4505.250 Monitor received signal from Sensor 
+4505.250 Number of cars is: 1
+4505.250 Side Street sensor sent signal to Monitor
+4505.250 Side Street sensor suspends
+4505.250 Monitor attempting comm with Controller
+4505.250 Monitor reactivated controller
+4505.250 Controller reactivated by Monitor
+4505.250 Controller change signal from monitor
+4510.048 Controller arrival signal from Monitor
+4510.048 Monitor sent change signal to Controller
+4510.048 Monitor suspends 
+4535.048 Controller attempt comm Light
+4536.169 Controller sending change signal to Light
+4536.169 Main Street Light reactivated from controller signal
+4536.169 Main Street Light waiting for change signal
+4542.706 Main Street Light received change signal 
+4542.706 Main Street Light has changed to Yellow
+4542.706 Controller sent yellow signal to main street
+4542.706 Main Street Light waiting for change signal
+4542.706 Main Street Light suspends until controller signal
+4547.706 Controller attempt comm Light
+4549.004 Controller sending change signal to Light
+4549.004 Main Street Light reactivated from controller signal
+4549.004 Main Street Light waiting for change signal
+4555.959 Main Street Light received change signal 
+4555.959 Main Street Light has changed to Red
+4555.959 Controller sent red signal to main street
+4555.959 Main Street Light waiting for change signal
+4555.959 Main Street Light suspends until controller signal
+4556.959 Controller attempt comm Light
+4561.666 Controller sending change signal to Light
+4561.666 Side Street Light reactivated from controller signal
+4561.666 Side Street Light waiting for change signal
+4567.270 Side Street Light received change signal 
+4567.270 Side Street Light has changed to Green
+4567.270 Controller sent green signal to side street
+4567.270 Side Street Light waiting for change signal
+4567.270 Side Street Light suspends until controller signal
+4575.833 Monitor received signal from Controller
+4575.833 Main street is green: true
+4575.833 Main street is green: false
+4575.833 Monitor suspends while waiting for main street sensor
+4575.833 Main Street sensor reactivated by Controller
+4582.652 Main Street sensor received reset signal from Controller 
+4582.652 Main Street sensor waits for car to arrive
+4582.652 Controller suspends
+4587.075 Main Street sensor detected waiting car
+4593.733 Monitor received signal from Sensor 
+4593.733 Number of cars is: 1
+4593.733 Main Street sensor sent signal to Monitor
+4593.733 Main Street sensor suspends
+4593.733 Monitor attempting comm with Controller
+4593.733 Monitor reactivated controller
+4593.733 Controller change signal from monitor
+4602.084 Controller arrival signal from Monitor
+4602.084 Monitor sent change signal to Controller
+4627.084 Controller attempt comm Light
+4628.986 Controller sending change signal to Light
+4628.986 Side Street Light reactivated from controller signal
+4628.986 Side Street Light waiting for change signal
+4636.237 Side Street Light received change signal 
+4636.237 Side Street Light has changed to Yellow
+4636.237 Controller sent yellow signal to side street
+4636.237 Side Street Light waiting for change signal
+4636.237 Side Street Light suspends until controller signal
+4641.237 Controller attempt comm Light
+4642.280 Controller sending change signal to Light
+4642.280 Side Street Light reactivated from controller signal
+4642.280 Side Street Light waiting for change signal
+4648.737 Side Street Light received change signal 
+4648.737 Side Street Light has changed to Red
+4648.737 Controller sent red signal to side street
+4648.737 Side Street Light waiting for change signal
+4648.737 Side Street Light suspends until controller signal
+4649.737 Controller attempt comm Light
+4651.106 Controller sending change signal to Light
+4651.106 Main Street Light reactivated from controller signal
+4651.106 Main Street Light waiting for change signal
+4656.143 Main Street Light received change signal 
+4656.143 Main Street Light has changed to Green
+4656.143 Controller sent green signal to main street
+4656.143 Main Street Light waiting for change signal
+4656.143 Main Street Light suspends until controller signal
+4662.374 Monitor received signal from Controller
+4662.374 Side street is green: false
+4662.374 Side street is green: true
+4662.374 Monitor suspends while waiting for side street sensor
+4662.374 Side Street sensor reactivated by Controller
+4667.662 Side Street sensor received reset signal from Controller 
+4667.662 Side Street sensor waits for car to arrive
+4667.662 Controller suspends
+4676.380 Side Street sensor detected waiting car
+4681.728 Monitor received signal from Sensor 
+4681.728 Number of cars is: 1
+4681.728 Side Street sensor sent signal to Monitor
+4681.728 Side Street sensor suspends
+4681.728 Monitor attempting comm with Controller
+4681.728 Monitor reactivated controller
+4681.728 Controller reactivated by Monitor
+4681.728 Controller change signal from monitor
+4688.521 Controller arrival signal from Monitor
+4688.521 Monitor sent change signal to Controller
+4688.521 Monitor suspends 
+4713.521 Controller attempt comm Light
+4714.740 Controller sending change signal to Light
+4714.740 Main Street Light reactivated from controller signal
+4714.740 Main Street Light waiting for change signal
+4720.176 Main Street Light received change signal 
+4720.176 Main Street Light has changed to Yellow
+4720.176 Controller sent yellow signal to main street
+4720.176 Main Street Light waiting for change signal
+4720.176 Main Street Light suspends until controller signal
+4725.176 Controller attempt comm Light
+4729.394 Controller sending change signal to Light
+4729.394 Main Street Light reactivated from controller signal
+4729.394 Main Street Light waiting for change signal
+4736.514 Main Street Light received change signal 
+4736.514 Main Street Light has changed to Red
+4736.514 Controller sent red signal to main street
+4736.514 Main Street Light waiting for change signal
+4736.514 Main Street Light suspends until controller signal
+4737.514 Controller attempt comm Light
+4740.115 Controller sending change signal to Light
+4740.115 Side Street Light reactivated from controller signal
+4740.115 Side Street Light waiting for change signal
+4745.416 Side Street Light received change signal 
+4745.416 Side Street Light has changed to Green
+4745.416 Controller sent green signal to side street
+4745.416 Side Street Light waiting for change signal
+4745.416 Side Street Light suspends until controller signal
+4751.453 Monitor received signal from Controller
+4751.453 Main street is green: true
+4751.453 Main street is green: false
+4751.453 Monitor suspends while waiting for main street sensor
+4751.453 Main Street sensor reactivated by Controller
+4758.374 Main Street sensor received reset signal from Controller 
+4758.374 Main Street sensor waits for car to arrive
+4758.374 Controller suspends
+4793.260 Main Street sensor detected waiting car
+4799.515 Monitor received signal from Sensor 
+4799.515 Number of cars is: 1
+4799.515 Main Street sensor sent signal to Monitor
+4799.515 Main Street sensor suspends
+4799.515 Monitor attempting comm with Controller
+4799.515 Monitor reactivated controller
+4799.515 Controller change signal from monitor
+4802.001 Controller arrival signal from Monitor
+4802.001 Monitor sent change signal to Controller
+4827.001 Controller attempt comm Light
+4831.277 Controller sending change signal to Light
+4831.277 Side Street Light reactivated from controller signal
+4831.277 Side Street Light waiting for change signal
+4837.802 Side Street Light received change signal 
+4837.802 Side Street Light has changed to Yellow
+4837.802 Controller sent yellow signal to side street
+4837.802 Side Street Light waiting for change signal
+4837.802 Side Street Light suspends until controller signal
+4842.802 Controller attempt comm Light
+4846.772 Controller sending change signal to Light
+4846.772 Side Street Light reactivated from controller signal
+4846.772 Side Street Light waiting for change signal
+4851.394 Side Street Light received change signal 
+4851.394 Side Street Light has changed to Red
+4851.394 Controller sent red signal to side street
+4851.394 Side Street Light waiting for change signal
+4851.394 Side Street Light suspends until controller signal
+4852.394 Controller attempt comm Light
+4857.213 Controller sending change signal to Light
+4857.213 Main Street Light reactivated from controller signal
+4857.213 Main Street Light waiting for change signal
+4861.869 Main Street Light received change signal 
+4861.869 Main Street Light has changed to Green
+4861.869 Controller sent green signal to main street
+4861.869 Main Street Light waiting for change signal
+4861.869 Main Street Light suspends until controller signal
+4866.699 Monitor received signal from Controller
+4866.699 Side street is green: false
+4866.699 Side street is green: true
+4866.699 Monitor suspends while waiting for side street sensor
+4866.699 Side Street sensor reactivated by Controller
+4873.263 Side Street sensor received reset signal from Controller 
+4873.263 Side Street sensor waits for car to arrive
+4873.263 Controller suspends
+4874.199 Side Street sensor detected waiting car
+4880.297 Monitor received signal from Sensor 
+4880.297 Number of cars is: 1
+4880.297 Side Street sensor sent signal to Monitor
+4880.297 Side Street sensor suspends
+4880.297 Monitor attempting comm with Controller
+4880.297 Monitor reactivated controller
+4880.297 Controller reactivated by Monitor
+4880.297 Controller change signal from monitor
+4887.161 Controller arrival signal from Monitor
+4887.161 Monitor sent change signal to Controller
+4887.161 Monitor suspends 
+4912.161 Controller attempt comm Light
+4916.313 Controller sending change signal to Light
+4916.313 Main Street Light reactivated from controller signal
+4916.313 Main Street Light waiting for change signal
+4921.100 Main Street Light received change signal 
+4921.100 Main Street Light has changed to Yellow
+4921.100 Controller sent yellow signal to main street
+4921.100 Main Street Light waiting for change signal
+4921.100 Main Street Light suspends until controller signal
+4926.100 Controller attempt comm Light
+4927.715 Controller sending change signal to Light
+4927.715 Main Street Light reactivated from controller signal
+4927.715 Main Street Light waiting for change signal
+4934.987 Main Street Light received change signal 
+4934.987 Main Street Light has changed to Red
+4934.987 Controller sent red signal to main street
+4934.987 Main Street Light waiting for change signal
+4934.987 Main Street Light suspends until controller signal
+4935.987 Controller attempt comm Light
+4936.591 Controller sending change signal to Light
+4936.591 Side Street Light reactivated from controller signal
+4936.591 Side Street Light waiting for change signal
+4942.306 Side Street Light received change signal 
+4942.306 Side Street Light has changed to Green
+4942.306 Controller sent green signal to side street
+4942.306 Side Street Light waiting for change signal
+4942.306 Side Street Light suspends until controller signal
+4950.612 Monitor received signal from Controller
+4950.612 Main street is green: true
+4950.612 Main street is green: false
+4950.612 Monitor suspends while waiting for main street sensor
+4950.612 Main Street sensor reactivated by Controller
+4954.066 Main Street sensor received reset signal from Controller 
+4954.066 Terminate Sensor process
+4954.066 Controller suspends
+5000.000 End of Simulation

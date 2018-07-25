@@ -1,0 +1,180 @@
+use all java.io
+use all java.text
+use all psimjava
+use all java.util
+
+
+class Car as process is
+public
+// Globals
+variables
+   define static worst_reaction  = 0.0 of type double //Worst time for light to react
+   define static worst_response = 0.0 of type double //worst time for light comm
+   define static tot_reaction = 0.0of type double //total reaction time
+   define static tot_response = 0.0 of type double //total response time
+   define static car_arr of type integer       //total number of arrivals
+   define static light_chg of type integer // total number of light changes
+   define static dir_chg of type integer	//Total number of Traffic changes
+
+   define static deadline_l = 0 of type integer     //Total number of deadlines missed
+   define static Con_Lig_time of type double	//Max time for Cont comm with Light
+   define static avg_arrival of type double		//Average car arrival time
+   define avg_comm = 5.85 of type double // comm interval
+   define Stn_Comm = 1.25 of type double  // comm interval STD
+   define static frstarvl_time of type double //time of first arrival
+   define static lstarvl_time of type double //time of first arrival
+   define static avg_sit of type double		//how long avg sits at sensor
+   define static required_sit of type double	//reuired sit length to trip sensor
+   define static simperiod of type double     // simulation interval
+   define static stop_time of type double // Time to stop sensors
+object references
+// Channels to send/receive messages or signals
+//
+   define static change_main of class Channel      //Channel to change the main street light
+   define static change_side of class Channel      // Channel to change the side steet light
+   define static notify_con of class Channel // Channel to Notify controller of a waiting car
+   define static notify_mon of class Channel // Channel to Notify monitor of a traffic change
+   define static Main_detect of class Channel    //Channel for main street sensor to notify monitor
+   define static Side_detect of class Channel   //Channel for side street sensor to notify monitor
+   define static MainChan of class Channel   // Channel for controller to reset main street sensor
+   define static SideChan of class Channel      // Channel for contorller to reset main street sensor
+//
+   define static sim of class Simulation
+//
+// Process objects
+//
+   define static lightM_obj of class Light       // Main light object
+   define static lightS_obj of class Light       // Side light object
+   define static Con_Obj of class Controller // controller object
+   define static Mon_Obj of class Monitor   // monitor object
+   define static sm_obj of class Sensor      // sensor for main street
+   define static ss_obj of class Sensor      // sensor for side street
+//
+
+   define static theCar of class Car
+   
+   // files for reporting   
+   define static statf of class PrintWriter
+   define static tracef of class PrintWriter
+//
+   function initializer parameters sys of type string is
+   begin
+      call super using sys
+   endfun initializer
+   //
+   function main is
+   begin
+     //
+     // set-up simulation
+     create sim of class Simulation using "Simple Traffic Light System"
+     //
+     // Set up report files
+     trace file "Traffictrace.txt"
+     statistics file "Traficstat.txt"
+     //
+     // set input parameters
+     set simperiod = 5000	//Simulation length in time units
+     set avg_arrival = 70	//avg time takes car to arrive
+     set Con_Lig_time = 5 // Deadline for controller comm with Light
+	 set stop_time=4950.00	//Set Time for sensors to terminate
+	 set avg_sit = 7.00	//Set average time car sits at sensor
+	 set required_sit = 6.0 //set sit time reuired to trip sensor
+     //
+     // main Process initialization
+     //
+     create theCar of class Car using "Traffic System"
+     start object theCar
+   endfun main
+
+   function Main_body is
+   variables
+      define avgreact of type string
+      define avgresp of type string
+      define dworstreact of type string
+      define dworstresp of type string
+   object references
+      // Round output to three decimal positions
+      define dfmt of class DecimalFormat
+   begin
+      create dfmt of class DecimalFormat using "###.000"
+
+      create sm_obj of class Sensor using "Main Street sensor", avg_arrival,avg_sit,1
+      create ss_obj of class Sensor using "Side Street sensor", avg_arrival,avg_sit,2
+      create Con_Obj of class Controller using "Controller", Con_Lig_time
+      create lightM_obj of class Light using "Main Street Light",  1
+	  create lightS_obj of class Light using "Side Street Light",  2
+      create Mon_Obj of class Monitor using "Monitor"
+      //Start Active objects
+      start object Mon_Obj
+      start object lightM_obj
+      start object lightS_obj
+      start object Con_Obj
+      start object sm_obj
+      start object ss_obj
+      //
+      // Channel initialization
+      //
+     create change_main of class Channel using "Cont-Main-Light Channel", 
+           Con_Obj, lightM_obj, avg_comm, Stn_Comm
+     create change_side of class Channel using "Cont-Side-Light-Channel",
+           Con_Obj, lightS_obj, avg_comm, Stn_Comm
+     create notify_con of class Channel using "Monitor-Cont-Arrive-Channel", 
+           Mon_Obj, Con_Obj, avg_comm, Stn_Comm
+     create notify_mon of class Channel using "Cont-Monitor-Switch-Channel",
+           Con_Obj, Mon_Obj, avg_comm, Stn_Comm
+     create Main_detect of class Channel using "MainSens-Monitor-Arrival-Channel",
+           sm_obj, Mon_Obj, avg_comm, Stn_Comm     
+     create Side_detect of class Channel using "SideSens-Monitor-Arrival-Channel",
+           ss_obj, Mon_Obj, avg_comm, Stn_Comm         
+     create MainChan of class Channel using "Cont-Sens-Go-Chan",
+           Con_Obj, sm_obj, avg_comm, Stn_Comm 
+     create SideChan of class Channel using "Cont-Sens-Stop-Chan",
+           Con_Obj, ss_obj, avg_comm, Stn_Comm 
+  
+     statwrite "Controller timeout: ",  Con_Lig_time
+     display "Controller timeout: ",  Con_Lig_time
+
+     start simulation with simperiod      // start simulation
+     
+     tracewrite "End of Simulation"
+
+     //
+     display "----------------------------------------------------------------------"
+     display "First Car arrived at time: ", frstarvl_time
+     display "Last Car arrived at time: ", lstarvl_time
+     display "Total cars that arrived: ", car_arr
+     display "Number of Traffic Changes: ", dir_chg
+     display "Number of Light Changes: ", light_chg
+
+     set avgreact = dfmt.format(tot_reaction /(light_chg))
+     display "Average system reaction time: ", avgreact
+      
+     set avgresp = dfmt.format(tot_response / (light_chg))
+     display "Average system response time: ", avgresp
+       
+     set dworstreact = dfmt.format(worst_reaction)
+     display "Worst reaction time: ", dworstreact
+     
+     set dworstresp = dfmt.format(worst_response)
+     display "Worst response time: ", dworstresp
+
+     display "Number of deadlines missed when Controller comm ",
+        "with Light: ", deadline_l
+     display "----------------------------------------------------------------------"
+     
+     statwrite "First Car arrived at time: ", frstarvl_time
+     statwrite "Last Car arrived at time: ", lstarvl_time
+     statwrite "Total cars that arrived: ", car_arr
+     statwrite"Number of Traffic Changes: ", dir_chg
+     statwrite "Number of Light Changes: ", light_chg
+     statwrite "Average system reaction time: ", avgreact
+      
+     statwrite "Average system response time: ", avgresp
+
+     statwrite "Worst reaction time: ", dworstreact
+     statwrite "Worst response time: ", dworstresp
+     statwrite "Number of deadlines missed when Controller comm ",
+        "with Light: ", deadline_l
+     call System.exit using 1
+   endfun Main_body
+endclass Car

@@ -1,0 +1,49 @@
+use all psimjava
+description
+  Message transfer with synchronous communication 
+  A sender process directly communicates with a receiver process
+  to transfer a message through a channel.
+    
+  (C) J. Garrido, Updated Nov. 2014
+  File: Message.osl
+*/
+
+class Message is
+private
+variables
+   define static seq_num = 0 of type integer // message number
+   define mess_num of type integer
+   define time_stamp of type double   // when message was created
+   define mes_data of type string     // data contents of message
+public
+function initializer parameters ldata of type string
+is
+begin
+      set mes_data = ldata
+      set time_stamp = 0.0
+      set mess_num = 1
+endfun initializer
+//
+//get message number
+function get_messnum return type integer is
+begin
+      return mess_num
+endfun get_messnum
+//
+function get_data return type string is
+begin
+      return mes_data
+endfun get_data
+//
+// set time stamp
+function set_time parameters ltime of type double is
+begin
+      set time_stamp = ltime
+endfun set_time
+//
+function get_time return type double is
+begin 
+     return time_stamp
+endfun get_time
+//   
+endclass Message

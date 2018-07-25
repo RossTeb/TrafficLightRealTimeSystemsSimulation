@@ -1,0 +1,74 @@
+OOSimL model: Simple Traffic Light System
+Simulation date: date: 12/8/2015 time: 22:35
+Controller timeout: 5.0
+--------------------STATISTICS REPORT----------------------------
+-----------------------------------------------------------------
+Random generator: Comm interval Cont-Sens-Stop-Chan
+Distribution: Normal
+Number of obs: 0
+Seed: 168
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval Cont-Sens-Go-Chan
+Distribution: Normal
+Number of obs: 0
+Seed: 145
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval SideSens-Monitor-Arrival-Channel
+Distribution: Normal
+Number of obs: 0
+Seed: 122
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval MainSens-Monitor-Arrival-Channel
+Distribution: Normal
+Number of obs: 0
+Seed: 99
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval Cont-Monitor-Switch-Channel
+Distribution: Normal
+Number of obs: 0
+Seed: 76
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval Monitor-Cont-Arrive-Channel
+Distribution: Normal
+Number of obs: 0
+Seed: 53
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval Cont-Side-Light-Channel
+Distribution: Normal
+Number of obs: 0
+Seed: 30
+Mean: 5.85
+Standard deviation: 1.25
+-----------------------------------------------------------------
+Random generator: Comm interval Cont-Main-Light Channel
+Distribution: Normal
+Number of obs: 0
+Seed: 7
+Mean: 5.85
+Standard deviation: 1.25
+ 
+End Simulation of Simple Traffic Light System date: 12/8/2015 time: 22:35
+Elapsed computer time: 19 msec
+ 
+First Car arrived at time: 0.0
+Last Car arrived at time: 0.0
+Total cars that arrived: 0
+Number of Traffic Changes: 0
+Number of Light Changes: 0
+Average system reaction time: �
+Average system response time: �
+Worst reaction time: .000
+Worst response time: .000
+Number of deadlines missed when Controller comm with Light: 0

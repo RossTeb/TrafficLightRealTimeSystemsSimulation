@@ -1,0 +1,127 @@
+use all java.io
+use all psimjava
+
+ class Light as process is
+ private
+ variables
+    define status of type integer	//Current State of light
+	define Light_Name of type string	//Light Name
+ object references
+    define ReceiveMsg of class Message 
+    define SendMsg of class Message
+	define changechan of class Channel  //Channel to comm with controller
+ public
+ constants
+    define GREEN = 1 of type integer
+    define RED = 2 of type integer
+    define YELLOW = 3 of type integer
+ 
+    function initializer parameters lname of type string, lstate of type integer
+    is
+    begin
+        call super using lname
+        set Light_Name = lname
+        //Set inital state 
+		if lstate == GREEN then
+			set status = GREEN
+		elseif lstate == RED then
+			set status = RED
+		endif
+
+    endfun initializer
+    //
+    function light_stat return type integer is
+    begin
+        return status               //return light status
+    endfun light_stat  
+    //
+    function Main_body is
+    variables
+       define simclock of type double
+       define r_time of type double  //used to calculate reaction time - holds simulation time
+    begin
+    	//Sets channel based on inital state
+       if status == GREEN then
+       		display Light_Name+" is Green"
+       		tracewrite Light_Name+" is Green"
+       		set changechan = Car.change_main
+       elseif status == RED then
+       		display Light_Name+" is Red"
+       		tracewrite Light_Name+" is Red"
+       		set changechan = Car.change_side
+       endif
+       
+       create SendMsg of class Message using "1" 
+
+       assign simulation clock to simclock
+       while simclock <= Car.simperiod  do
+            tracewrite Light_Name+" waiting for change signal"
+            //Attempt comm or suspend
+            if changechan.input_ready() then
+            //if comm available, recieve signal and change light
+               assign simulation clock to simclock
+               set ReceiveMsg = changechan.receive()
+               tracewrite Light_Name+" received change signal "
+               //call method to change light
+               call change_signal
+               //increments total number of light changes
+               increment Car.light_chg
+               assign simulation clock to r_time
+               //sum of reaction time
+               set Car.tot_reaction= Car.tot_reaction+(r_time - simclock)
+               //if new worst reaction time, set 
+               if Car.worst_reaction < (r_time - simclock)then
+               		set Car.worst_reaction = (r_time - simclock)
+               endif
+               reschedule self now
+            else
+               tracewrite Light_Name+" suspends until controller signal"
+               suspend self
+               tracewrite Light_Name+" reactivated from controller signal"
+            endif
+           assign simulation clock to simclock
+       endwhile
+    endfun Main_body
+    //
+    function change_signal is
+    variables
+    	define alter of type boolean
+    	define color of type string
+    begin
+    	
+    	set alter = false  //used to determine if signal changed properly
+		//Changes to next light color based on current state
+        if status == GREEN then
+        	set status=YELLOW
+        	set alter=true
+        elseif status == YELLOW then
+        	set alter=true
+        	set status = RED
+        elseif status == RED then
+        	set alter=true
+        	set status=GREEN
+        endif
+ 		//Records light change
+        if alter == true then
+        	//call method to a string of the current light state
+        	set color=get_status_string()
+        	
+        	tracewrite Light_Name+" has changed to ",color
+        	display Light_Name+" has changed to ",color
+        endif
+    endfun change_signal
+    
+    function get_status_string return type string is
+    begin
+    	if status == GREEN then
+    		return "Green"
+    	elseif status == RED then
+    		return "Red"
+    	elseif status == YELLOW then
+    		return "Yellow"
+    	else
+    		return"*Unable to get color*"
+    	endif
+    endfun get_status_string
+    //
+ endclass Light

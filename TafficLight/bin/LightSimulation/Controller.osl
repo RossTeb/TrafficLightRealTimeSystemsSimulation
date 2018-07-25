@@ -1,0 +1,414 @@
+import all psimjava
+
+class Controller as process is
+private
+variables
+    define early_com of type double     // earliest time for communication
+    define late_com of type double      // latest time for communication
+    define c_timeout of type double
+    define status of type integer
+    define green_wait of type double //indicates how long the controller should wait before changing a green light to yellow
+	define yellow_wait of type double //indicates how long the controller should wait before changing a yellow light to red
+	define red_wait of type double //length of time both lights remain red when changing
+object references
+    define Comm_Light of class Urand     // random time for comm with gate
+    
+    define M_Cchan of class Channel	//Channel to recieve arrival signal from monitor
+    define C_Mchan of class Channel //Channel to reset Monitor
+    define contMchan of class Channel //Channel to reset Main street sensor
+    define contSchan of class Channel //Channel to reset side street sensor
+    define MainLChan of class Channel //Channel to change main light
+    define SideLChan of class Channel //channel to change side light
+
+    define ReceiveMsg of class Message
+    define SendMsg of class Message
+public
+constants
+    define G_R = 1 of type integer
+    define SWITCH_SIDE = 2 of type integer
+    define Y_R = 3 of type integer
+    define R_R = 4 of type integer
+    define R_G = 5 of type integer
+    define SWITCH_MAIN = 6 of type integer
+    define R_Y = 7 of type integer
+
+   
+   //
+    function initializer parameters cname of type string, deadline of type double
+        is
+    begin
+         call super using cname
+       
+         set early_com = 0.10*deadline    // earliest time for communication
+         set late_com = 1.03*deadline     // latest time for comm with Light
+
+         create Comm_Light of class Urand using early_com, late_com  // uniform random period 
+         set status = G_R
+         set green_wait = 25
+         set yellow_wait = 5
+         set red_wait = 1
+         set c_timeout = deadline
+    endfun initializer
+    //   
+    function Main_body is
+    variables
+         define simclock of type double
+    begin
+         assign simulation clock to simclock
+         set M_Cchan = Car.notify_con
+         set C_Mchan = Car.notify_mon
+         set contMchan = Car.MainChan
+         set contSchan = Car.SideChan
+         set MainLChan = Car.change_main
+         set SideLChan = Car.change_side
+         create SendMsg of class Message using "1"
+         while simclock <= Car.simperiod  do
+            reschedule self now
+            while status == G_R do
+
+               if M_Cchan.input_ready() then 
+                  tracewrite "Controller change signal from monitor"
+                  reschedule self now
+                  set ReceiveMsg = M_Cchan.receive()
+                  set status = SWITCH_SIDE
+                  tracewrite "Controller arrival signal from Monitor"
+                  hold self for green_wait
+               else 
+                  tracewrite "Controller suspends"
+                  suspend self
+                  tracewrite "Controller reactivated by Monitor"
+               endif
+			   reschedule self now
+            endwhile
+            
+            call switch_sideY
+            //
+			while status == R_G do
+
+               if M_Cchan.input_ready() then 
+                  tracewrite "Controller change signal from monitor"
+                  reschedule self now
+                  set ReceiveMsg = M_Cchan.receive()
+                  set status = SWITCH_SIDE
+                  tracewrite "Controller arrival signal from Monitor"
+                  hold self for green_wait
+               else 
+                  tracewrite "Controller suspends"
+                  suspend self
+               endif
+			   reschedule self now
+            endwhile
+            call switch_mainY
+            assign simulation clock to simclock
+         endwhile
+    endfun Main_body
+    //
+
+    function switch_sideY is
+      variables
+
+         define wait_t of type double
+         define simclock of type double
+      begin
+      	 assign simulation clock to simclock
+         tracewrite "Controller attempt comm Light"
+         //Generate random time to wait
+         generate random value wait_t from Comm_Light 
+
+         hold self for wait_t               //Wait before Comm
+		 //add response to total response time
+		 set Car.tot_response = Car.tot_response+wait_t
+		 //If longest wait yet
+         if wait_t > Car.worst_response then
+			 set Car.worst_response = wait_t
+         endif
+         // If waited longer than deadline
+         if wait_t > c_timeout then
+             increment Car.deadline_l
+             tracewrite "**** Controller timeout when comm with Light"
+             display "**** Controller timeout when comm with Light"
+         endif
+         //
+         //Check if light is active
+         if Car.lightM_obj.idle() and 
+                   Car.lightM_obj.light_stat() == Car.lightM_obj.GREEN or
+                   Car.lightM_obj.light_stat() == Car.lightM_obj.YELLOW or
+                   Car.lightM_obj.light_stat() == Car.lightM_obj.RED
+         then
+            reactivate Car.lightM_obj now   
+         endif
+         tracewrite  "Controller sending change signal to Light" 
+     
+         call MainLChan.send using SendMsg    // Send signal to Main light to change
+         set status = Y_R            // Change state
+      
+         tracewrite "Controller sent yellow signal to main street"
+         call switch_sideR
+    endfun switch_sideY
+   //
+    function switch_sideR is
+      variables
+         define wait_t of type double
+         define simclock of type double
+      begin
+      	 assign simulation clock to simclock
+      	 hold self for yellow_wait
+         tracewrite "Controller attempt comm Light"
+         //Generate time till comm
+         generate random value wait_t from Comm_Light 
+         hold self for wait_t               //Hold before comm
+		 //add response to total response time
+		 set Car.tot_response = Car.tot_response+wait_t
+         if wait_t > Car.worst_response then
+			 set Car.worst_response = wait_t
+         endif
+         //
+		//if waited past deadline
+         if wait_t > c_timeout then
+             increment Car.deadline_l  
+             tracewrite "**** Controller timeout when comm with Light"
+             display "**** Controller timeout when comm with Light"
+         endif
+         //
+         // Check if light active
+         if Car.lightM_obj.idle() and 
+                   Car.lightM_obj.light_stat() == Car.lightM_obj.GREEN or
+                   Car.lightM_obj.light_stat() == Car.lightM_obj.YELLOW or
+                   Car.lightM_obj.light_stat() == Car.lightM_obj.RED
+         then
+            reactivate Car.lightM_obj now   
+         endif
+         tracewrite  "Controller sending change signal to Light" 
+         //      
+         call MainLChan.send using SendMsg    // Send signal to change main light
+         set status = R_R            //Change State
+      
+         tracewrite "Controller sent red signal to main street"
+         call switch_sideG
+    endfun switch_sideR
+    // Send open signal to gate
+    function switch_sideG is
+      variables
+         define wait_t of type double
+         define simclock of type double
+      begin
+      	 assign simulation clock to simclock
+      	 hold self for red_wait
+         tracewrite "Controller attempt comm Light"
+         //Generate random hold time
+         generate random value wait_t from Comm_Light 
+          
+         hold self for wait_t               //Wait to comm
+		 set Car.tot_response = Car.tot_response+wait_t
+         if wait_t > Car.worst_response then
+			 set Car.worst_response = wait_t
+         endif
+         //
+         //If waited past deadline
+         if wait_t > c_timeout then
+              
+             increment Car.deadline_l
+             tracewrite "**** Controller timeout when comm with Light"
+             display "**** Controller timeout when comm with Light"
+         endif
+         //
+         //Check if Light active
+         if Car.lightS_obj.idle() and 
+                   Car.lightS_obj.light_stat() == Car.lightS_obj.GREEN or
+                   Car.lightS_obj.light_stat() == Car.lightS_obj.YELLOW or
+                   Car.lightS_obj.light_stat() == Car.lightS_obj.RED
+         then
+             
+            reactivate Car.lightS_obj now   
+         endif
+         tracewrite  "Controller sending change signal to Light" 
+          
+         //      
+         call SideLChan.send using SendMsg    // Send signal to change light
+         set status = R_G            //Change State
+      
+         tracewrite "Controller sent green signal to side street"
+		 call resetMainSensors
+    endfun switch_sideG
+    function switch_mainY is
+      variables
+         define wait_t of type double
+         define simclock of type double
+      begin
+      	 assign simulation clock to simclock
+         tracewrite "Controller attempt comm Light"
+         //Generate random hold time
+         generate random value wait_t from Comm_Light 
+          
+         hold self for wait_t               //Wait to comm
+		 set Car.tot_response = Car.tot_response+wait_t
+         if wait_t > Car.worst_response then
+			 set Car.worst_response = wait_t
+         endif
+         //
+         //If waited past deadline
+         if wait_t > c_timeout then
+              
+             increment Car.deadline_l 
+             tracewrite "**** Controller timeout when comm with Light"
+             display "**** Controller timeout when comm with Light"
+         endif
+         //
+         //Check if Light active
+         if Car.lightS_obj.idle() and 
+                   Car.lightS_obj.light_stat() == Car.lightS_obj.GREEN or
+                   Car.lightS_obj.light_stat() == Car.lightS_obj.YELLOW or
+                   Car.lightS_obj.light_stat() == Car.lightS_obj.RED
+         then
+             
+            reactivate Car.lightS_obj now   
+         endif
+         tracewrite  "Controller sending change signal to Light" 
+          
+         //      
+         call SideLChan.send using SendMsg    // Send signal to change light
+         set status = R_Y            //Change State
+      
+         tracewrite "Controller sent yellow signal to side street"
+         call switch_mainR
+    endfun switch_mainY
+   //
+    function switch_mainR is
+      variables
+         define wait_t of type double
+         define simclock of type double
+      begin
+      	 assign simulation clock to simclock
+      	 hold self for yellow_wait
+         tracewrite "Controller attempt comm Light"
+         //Generate random hold time
+         generate random value wait_t from Comm_Light 
+          
+         hold self for wait_t               //Wait to comm
+		 set Car.tot_response = Car.tot_response+wait_t
+         if wait_t > Car.worst_response then
+			 set Car.worst_response = wait_t
+         endif
+         //
+         //If waited past deadline
+         if wait_t > c_timeout then
+              
+             increment Car.deadline_l
+             tracewrite "**** Controller timeout when comm with Light"
+             display "**** Controller timeout when comm with Light"
+         endif
+         //
+         //Check if Light active
+         if Car.lightS_obj.idle() and 
+                   Car.lightS_obj.light_stat() == Car.lightS_obj.GREEN or
+                   Car.lightS_obj.light_stat() == Car.lightS_obj.YELLOW or
+                   Car.lightS_obj.light_stat() == Car.lightS_obj.RED
+         then
+             
+            reactivate Car.lightS_obj now   
+         endif
+         tracewrite  "Controller sending change signal to Light" 
+          
+         //      
+         call SideLChan.send using SendMsg    // Send signal to change light
+         set status = R_R            //Change State
+      
+         tracewrite "Controller sent red signal to side street"
+         call switch_mainG
+    endfun switch_mainR
+    // Send open signal to gate
+    function switch_mainG is
+      variables
+         define wait_t of type double
+         define simclock of type double
+      begin
+      	 assign simulation clock to simclock
+      	 hold self for red_wait
+         tracewrite "Controller attempt comm Light"
+         //Generate random hold time
+         generate random value wait_t from Comm_Light 
+          
+         hold self for wait_t               //Wait to comm
+		 set Car.tot_response = Car.tot_response+wait_t
+         if wait_t > Car.worst_response then
+			 set Car.worst_response = wait_t
+         endif
+         //
+         //If waited past deadline
+         if wait_t > c_timeout then
+              
+             increment Car.deadline_l  
+             tracewrite "**** Controller timeout when comm with Light"
+             display "**** Controller timeout when comm with Light"
+         endif
+         //
+         //Check if Light active
+         if Car.lightM_obj.idle() and 
+                   Car.lightM_obj.light_stat() == Car.lightM_obj.GREEN or
+                   Car.lightM_obj.light_stat() == Car.lightM_obj.YELLOW or
+                   Car.lightM_obj.light_stat() == Car.lightM_obj.RED
+         then
+             
+            reactivate Car.lightM_obj now   
+         endif
+         tracewrite  "Controller sending change signal to Light" 
+          
+         //      
+         call MainLChan.send using SendMsg    // Send signal to change light
+         set status =G_R             //Change State
+      
+         tracewrite "Controller sent green signal to main street"
+		 call resetSideSensors
+    endfun switch_mainG
+    
+    function resetSideSensors is
+      begin
+      reschedule self now
+      increment Car.dir_chg
+      if Car.Mon_Obj.idle() and
+          (Car.Mon_Obj.mon_stat() == Car.Mon_Obj.NONE_WAIT or
+              Car.Mon_Obj.mon_stat() == Car.Mon_Obj.WAIT_TRAFFIC)
+      then
+          reactivate Car.Mon_Obj now   // reactivate monitor
+          reschedule self now
+      endif
+      call C_Mchan.send using SendMsg          // Send signal to Monitor to reset
+	  if Car.ss_obj.idle() and
+          (Car.ss_obj.get_status() == Car.ss_obj.CAR_DETECT or
+              Car.ss_obj.get_status() == Car.ss_obj.WAITING_CAR)
+      then
+          reactivate Car.ss_obj now   // reactivate monitor
+          reschedule self now
+      endif
+      call contSchan.send using SendMsg          // Send signal to side sensor to reset
+		
+    endfun resetSideSensors
+    
+    function resetMainSensors is
+      begin
+      reschedule self now
+      increment Car.dir_chg
+      if Car.Mon_Obj.idle() and
+          (Car.Mon_Obj.mon_stat() == Car.Mon_Obj.NONE_WAIT or
+              Car.Mon_Obj.mon_stat() == Car.Mon_Obj.WAIT_TRAFFIC)
+      then
+          reactivate Car.Mon_Obj now   // reactivate monitor
+          reschedule self now
+      endif
+      call C_Mchan.send using SendMsg        // Send signal to Monitor to reset
+	  if Car.sm_obj.idle() and
+          (Car.sm_obj.get_status() == Car.sm_obj.CAR_DETECT or
+              Car.sm_obj.get_status() == Car.sm_obj.WAITING_CAR)
+      then
+          reactivate Car.sm_obj now   // reactivate monitor
+          reschedule self now
+      endif
+      call contMchan.send using SendMsg          // Send signal to main sensor to reset
+		
+    endfun resetMainSensors
+    function cont_stat return type integer is
+    begin
+         return status
+    endfun cont_stat
+   //
+endclass Controller

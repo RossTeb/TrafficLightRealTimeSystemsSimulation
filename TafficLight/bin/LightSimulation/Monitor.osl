@@ -1,0 +1,234 @@
+use all java.io
+use all psimjava
+
+
+class Monitor as process is
+ private
+ variables
+     define num_cars of type integer    // number of Cars currently in area
+     define status of type integer	//holds the state of monitor
+	 //current traffic direction: True = Main street is Green / False = Side street is Green
+     define Cur_Traf_Dir of type boolean	
+     //Determines if is first car
+     define frst_arvl of type boolean
+ object references
+     define Mainarrival of class Channel	//Channel for main street sensor to notify monitor
+     define Sidearrival of class Channel	//Channel for side sensor to nofity monitor
+     define C_Mchan of class Channel	//Channel to notify controller to change direction
+     define M_Cchan of class Channel	//Controller to verify direction change
+
+     define ReceiveMsg of class Message
+     define SendMsg of class Message
+ public
+ constants
+     define NONE_WAIT = 1 of type integer
+     define CAR_WAIT = 2 of type integer
+     define CAR_IN = 3 of type integer
+     define WAIT_TRAFFIC = 4 of type integer
+     define MAIN_GREEN = true of type boolean
+     define SIDE_GREEN = false of type boolean
+
+ function mon_stat return type integer is
+ begin
+     return status         // status of monitor process
+ endfun mon_stat
+ //
+ function initializer parameters mname of type string is
+ begin
+    call super using mname	//set monitor name
+	
+    set num_cars = 0 
+    set status = 0
+    
+    create SendMsg of class Message using "1"
+	set Cur_Traf_Dir = MAIN_GREEN	//Sets main street green first
+	set frst_arvl = true
+ endfun initializer
+ //
+ function Main_body is
+ variables 
+     define simclock of type double
+ begin
+     set status = NONE_WAIT
+     //Create channels
+     set Mainarrival = Car.Main_detect
+     set Sidearrival = Car.Side_detect
+     set C_Mchan = Car.notify_con
+     set M_Cchan = Car.notify_mon
+     //Set total number of cars to 0
+     set Car.car_arr=0
+     
+     assign simulation clock to simclock
+     while simclock <= Car.simperiod do
+         call car_arrive //Wait for sensor to comm
+         reschedule self now
+         call awaitChange     // Wait for reset signal from controller
+         assign simulation clock to simclock
+     endwhile
+ endfun Main_body
+ //
+ function car_arrive is
+ begin
+    //wait for sensor comm
+    while status == NONE_WAIT do
+    	//if main stree is green attempt to receive signal from side street sensor, otherwise attempt comm with main sensor
+    	if Cur_Traf_Dir == MAIN_GREEN then
+        	// checks if sensor is redy to comm else suspends
+        	if Sidearrival.input_ready() then
+           	// comm with side street sensor
+           	   call first_side_arrival
+        	else 
+           tracewrite "Monitor suspends while waiting for side street sensor"
+           	   suspend self 
+        	endif 
+		    reschedule self now
+		elseif Cur_Traf_Dir == SIDE_GREEN then
+			//checks is main street sensor is redy for comm otherwise suspends
+        	if Mainarrival.input_ready() then
+        		//attempt comm with main street sensor
+           	   call first_main_arrival
+        	else 
+           tracewrite "Monitor suspends while waiting for main street sensor"
+           	   suspend self
+        	endif 
+		    reschedule self now
+		endif
+    endwhile
+    //
+   
+ 
+    // Check if controller active
+    if Car.Con_Obj.idle() and Car.Con_Obj.cont_stat() == Car.Con_Obj.G_R or
+    						  Car.Con_Obj.cont_stat() == Car.Con_Obj.R_G
+    then        
+			//reactivate controller if idle
+            reactivate Car.Con_Obj now
+            reschedule self now //allows cont thread to run
+
+            call C_Mchan.send using SendMsg   // send signal 
+            tracewrite "Monitor sent change signal to Controller"
+            set status = WAIT_TRAFFIC
+    endif  
+    
+    set status = WAIT_TRAFFIC
+        
+ endfun car_arrive
+ //method to comm with side street sensor
+ function first_side_arrival is
+ variables
+       define simclock of type double
+ begin
+       set ReceiveMsg = Sidearrival.receive() //Get message from Sensor
+       increment num_cars           // increment number of cars
+       assign simulation clock to simclock
+       //if this is first car set first car arrival time
+       if frst_arvl == true then
+       		set Car.frstarvl_time = simclock
+       		set frst_arvl = false
+       else
+       		//updates last car arrival time
+       		set Car.lstarvl_time = simclock
+       endif
+       set status = CAR_WAIT //change state to cars wating
+       tracewrite "Monitor received signal from Sensor "
+       tracewrite "Number of cars is: ", num_cars
+       increment Car.car_arr //increments total number of cars 
+ endfun first_side_arrival
+ // 
+ function first_main_arrival is
+ variables
+       define simclock of type double
+ begin
+       set ReceiveMsg = Mainarrival.receive() //Get message from Sensor
+       increment num_cars           // increment number of cars
+       assign simulation clock to simclock
+       //if first car set first car arrival time
+       if frst_arvl == true then
+       		set Car.frstarvl_time = simclock
+       		set frst_arvl = false
+       else //updates last car arrival time
+       		set Car.lstarvl_time = simclock
+       endif
+       set status = CAR_WAIT //set state to car waiting
+       tracewrite "Monitor received signal from Sensor "
+       tracewrite "Number of cars is: ", num_cars
+       increment Car.car_arr//increments total number of cars
+ endfun first_main_arrival
+ function awaitChange is
+ begin 
+ 	//Monitor Waits for controller to notify of traffic change
+      while status == WAIT_TRAFFIC do
+      //If current traffic direction if mainstreet attempt comm with side sensor or controller
+		if Cur_Traf_Dir == MAIN_GREEN then
+			//checks if sensor or controller rdy for comm otherwise suspends
+        	if Sidearrival.input_ready() then
+				set ReceiveMsg = Sidearrival.receive() 
+				tracewrite "Monitor received signal from Sensor"
+				set status = CAR_IN
+				//method to increment number of cars
+				call car_in
+			elseif M_Cchan.input_ready() then
+				//receive reset msg from controller
+				set ReceiveMsg = M_Cchan.receive() 
+          		tracewrite "Monitor received signal from Controller"
+          		set status = NONE_WAIT
+          		//Change current traffic direction- Begin waiting for adjacent street sensor
+				tracewrite"Main street is green: "+Cur_Traf_Dir
+          		set Cur_Traf_Dir = !Cur_Traf_Dir
+  				tracewrite"Main street is green: "+Cur_Traf_Dir
+        	else 
+           		tracewrite "Monitor suspends "
+           	   suspend self  //suspends monitor if no comm was available
+        	endif 
+		    reschedule self now //Allows Sensor thread to continue
+	//If current traffic direction if side street attempt comm with main sensor or controller
+		elseif Cur_Traf_Dir == SIDE_GREEN then
+		//checks if sensor or controller rdy for comm otherwise suspends
+        	if Mainarrival.input_ready() then
+           		set ReceiveMsg = Mainarrival.receive() 
+				tracewrite "Monitor received signal from Sensor"
+				set status = CAR_IN
+				//method to increment number of cars
+				call car_in
+        	elseif M_Cchan.input_ready() then
+        		//receive reset sensor from controller
+				set ReceiveMsg = M_Cchan.receive() 
+          		tracewrite "Monitor received signal from Controller"
+          		set status = NONE_WAIT
+          		//Change current traffic direction- Begin waiting for adjacent street sensor
+          		tracewrite"Side street is green: "+Cur_Traf_Dir
+          		set Cur_Traf_Dir = !Cur_Traf_Dir
+          		tracewrite"Side street is green: "+Cur_Traf_Dir
+			else
+           	   suspend self //suspends monitor if no comm was available
+        	endif 
+		    reschedule self now	//Allows Sensor thread to continue
+		endif
+      endwhile
+ endfun awaitChange
+ //
+ function car_in is
+ begin
+ 	//if not the first car
+      if num_cars > 1 then
+          increment num_cars           
+          set status = WAIT_TRAFFIC
+          tracewrite "Another car has arrived, Cars waiting is now: ", num_cars
+          increment Car.car_arr  // increment total number of cars
+	//Attempts comm with controller if this is the first arrival since last reset
+      elseif Car.Con_Obj.idle() and Car.Con_Obj.cont_stat() == Car.Con_Obj.G_R or
+      								Car.Con_Obj.cont_stat() == Car.Con_Obj.R_G
+    then        
+		//reactivates controller thread
+            reactivate Car.Con_Obj now
+            //allows controller thread to run
+            reschedule self now
+
+            call C_Mchan.send using SendMsg   // send signal 
+            tracewrite "Monitor sent change signal to Controller"
+            set status = WAIT_TRAFFIC
+            increment Car.car_arr  // increment total number of cars
+    endif 
+ endfun car_in
+endclass Monitor
+
